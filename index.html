@@ -549,6 +549,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   <!-- TICKER -->
   <div class="ticker-wrap">
     <div class="ticker-inner">
+      <div class="ti" style="color:#e65100;font-weight:800">☀️ Летни курсове 2026 — Записването е отворено! 1 юли · Ограничени места</div>
       <div class="ti">🥇 Александър Гатев <span class="sep">·</span> Злато IOI 2025</div>
       <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион BOI 2025</div>
       <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион EJOI 2023</div>
@@ -579,11 +580,11 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   </div>
 
   <!-- MID CTA -->
-  <div class="mid-cta rv">
-    <p>Следващият прием стартира <span>15 септември</span> — местата са ограничени</p>
+  <div class="mid-cta rv" style="flex-wrap:wrap;gap:16px">
+    <p>☀️ <strong>Летни курсове 2026</strong> стартират от <span>1 юли</span> — местата са ограничени</p>
     <div class="mid-cta-r">
-      <span class="mid-cta-sub">Безплатен пробен урок</span>
-      <button class="btn-p" onclick="navigate('contact')">Резервирай място</button>
+      <span class="mid-cta-sub">Интензивен (750 лв.) или седмичен (400 лв.)</span>
+      <button class="btn-p" onclick="navigate('zapisvane');setSummerCourse()">Запиши се за лятото →</button>
     </div>
   </div>
 
@@ -614,6 +615,17 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <p>Интензивна подготовка за приемни изпити след 4. и 7. клас — за СМГ, НПМГ и ТУЕС.</p>
         <div class="prog-tags"><span class="ptag pp">4. клас</span><span class="ptag pp">7. клас</span><span class="ptag pp">СМГ · НПМГ · ТУЕС</span></div>
         <div class="prog-link">Виж програмата</div>
+      </div>
+      <div class="prog-card rv" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border:2px solid #ffd54f;cursor:pointer" onclick="navigate('zapisvane');setSummerCourse()">
+        <div style="position:absolute;top:14px;right:14px;background:#e65100;color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.04em;z-index:2">☀️ ЛЯТО 2026</div>
+        <div class="prog-ico">☀️</div>
+        <h3 style="color:#e65100">Летни курсове</h3>
+        <p style="color:#bf6000">Интензивна подготовка през юли–август. Два варианта — присъствен и онлайн. За ученици завършили 5. клас.</p>
+        <div class="prog-tags">
+          <span class="ptag" style="background:#fff3cd;color:#e65100">⚡ 1–9 юли · 750 лв.</span>
+          <span class="ptag" style="background:#fff3cd;color:#e65100">📅 Всяка сряда · 400 лв.</span>
+        </div>
+        <div class="prog-link" style="color:#e65100">Запиши се →</div>
       </div>
     </div>
   </section>
@@ -899,6 +911,21 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div style="font-family:'Baloo 2',cursive;font-size:36px;font-weight:800;color:#fff">200+</div>
       <div style="font-size:13px;color:rgba(255,255,255,.75);font-weight:600">ученици класирани на НОИ</div>
     </div>
+  </div>
+
+  <!-- ЛЕТЕН БАНЕР -->
+  <div style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border-bottom:3px solid #ffd54f;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;cursor:pointer" onclick="navigate('zapisvane');setSummerCourse()">
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="font-size:32px">☀️</div>
+      <div>
+        <div style="font-size:15px;font-weight:800;color:#e65100;margin-bottom:3px">Летни курсове по информатика 2026 — Записването е отворено!</div>
+        <div style="font-size:13px;color:#bf6000;font-weight:500">
+          ⚡ <strong>Вариант 1:</strong> Интензивен · 1–9 юли · Присъствено · 750 лв. &nbsp;|&nbsp;
+          📅 <strong>Вариант 2:</strong> Всяка сряда · 1 юли – 26 август · Онлайн · 400 лв.
+        </div>
+      </div>
+    </div>
+    <div style="background:#e65100;color:#fff;font-size:13px;font-weight:800;padding:10px 22px;border-radius:28px;white-space:nowrap;flex-shrink:0">Запиши се →</div>
   </div>
 
   <!-- КУРСОВЕ ПО КЛАСОВЕ -->
@@ -1825,19 +1852,39 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
   <!-- ЛЕТЕН-ИНФ FORM -->
   <div id="form-летен-инф" style="display:none" class="form-step3">
-        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
-        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+    <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+    <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Изберете вариант и попълнете формата</div>
+
+    <!-- VARIANT SELECTOR -->
+    <div style="display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap">
+      <div id="linfo-v1-card" onclick="selectLinfoVariant(1)" style="flex:1;min-width:240px;background:#fff8e1;border:2px solid #ffd54f;border-radius:var(--rl);padding:22px 20px;cursor:pointer;transition:all .2s">
+        <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:10px">⚡ Вариант 1 — Интензивен</div>
+        <div style="font-size:12px;color:#bf6000;font-weight:500;line-height:1.7">
+          📅 <strong>1 – 9 юли</strong>, всеки ден<br>
+          🕐 13:00 – 18:00 ч. (4 ч. + 1 ч. почивка)<br>
+          📍 Присъствено, ул. Екзарх Йосиф 73<br>
+          💰 <strong>750 лева</strong>
+        </div>
+      </div>
+      <div id="linfo-v2-card" onclick="selectLinfoVariant(2)" style="flex:1;min-width:240px;background:#f3f8ff;border:2px solid var(--border);border-radius:var(--rl);padding:22px 20px;cursor:pointer;transition:all .2s">
+        <div style="font-size:13px;font-weight:800;color:#2a4a7a;margin-bottom:10px">📅 Вариант 2 — Седмичен</div>
+        <div style="font-size:12px;color:#3a5a8a;font-weight:500;line-height:1.7">
+          📅 <strong>1 юли – 26 август</strong>, всяка сряда<br>
+          🕐 11:00 – 13:00 ч.<br>
+          💻 Онлайн<br>
+          💰 <strong>400 лева</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHARED INFO BOX -->
+    <div style="background:#fffbea;border-radius:var(--r);padding:14px 18px;border:1px solid #ffd54f;margin-bottom:28px;font-size:13px;color:#bf6000;font-weight:500">
+      🎓 <strong>За ученици завършили 5. клас.</strong> Целта е да затвърди темите от Е група и да подготви за успешен старт в Д група. 💻 Език: <strong>C++</strong> · 📞 <strong>0878 171 825</strong> (Петър)
+    </div>
+
+    <!-- FORM -->
     <div class="zapisvane-grid">
       <div>
-        <div style="background:#fff8e1;border-radius:var(--rl);padding:28px;border:1.5px solid #ffd54f;margin-bottom:24px">
-          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:12px">☀️ Летен курс по информатика</div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-size:13px;color:#bf6000;font-weight:500">📅 <strong>Лято 2026</strong></div>
-            <div style="font-size:13px;color:#bf6000;font-weight:500">⚡ Интензивен или седмичен формат</div>
-            <div style="font-size:13px;color:#bf6000;font-weight:500">💻 Език: <strong>C++</strong></div>
-            <div style="font-size:13px;color:#bf6000;font-weight:500">📞 <strong>0878 171 825</strong> (Петър)</div>
-          </div>
-        </div>
         <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
           <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
           <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
@@ -1852,24 +1899,18 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         </div>
         <div class="fgrp"><label>ИМЕЙЛ</label><input type="email" id="linfo-email" placeholder="email@example.com"></div>
         <div class="fgrp">
-          <label>КЛАС *</label>
+          <label>ВАРИАНТ *</label>
           <div class="pills" style="margin-top:8px" id="pills-linfo-grade">
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 5 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 6 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 7 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 8 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 9 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 10 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 11 клас</span>
-            <span class="pill" onclick="selectOne(this,'linfo-grade')">Информатика за 12 клас</span>
+            <span class="pill" onclick="selectLinfoVariantPill(this,1)">⚡ Интензивен (1-9 юли · 750 лв.)</span>
+            <span class="pill" onclick="selectLinfoVariantPill(this,2)">📅 Седмичен (всяка сряда · 400 лв.)</span>
           </div>
         </div>
         <div class="fgrp">
           <label>ФОРМА НА ОБУЧЕНИЕ *</label>
           <div class="pills" style="margin-top:8px" id="pills-linfo-mode">
-            <span class="pill" onclick="selectOne(this,'linfo-format')">Присъствено</span>
-            <span class="pill" onclick="selectOne(this,'linfo-format')">Онлайн</span>
-            <span class="pill" onclick="selectOne(this,'linfo-format')">Нямам предпочитания</span>
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Присъствено</span>
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Онлайн</span>
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Няма значение</span>
           </div>
         </div>
         <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="linfo-comment" placeholder="По желание..."></div>
@@ -2243,7 +2284,13 @@ function showDay(idx, tab) {
   });
 }
 
-var GF_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf9oka4j2w2optQ2qU50iccF2wVVwGrlwNA6ougJNb2lkh0aw/formResponse';
+// ── Google Forms URLs ──────────────────────────────────────────
+var GF_FORMS = {
+  // Годишен — обща форма (info, math, kg, lmat, lkg)
+  default: 'https://docs.google.com/forms/d/e/1FAIpQLSf9oka4j2w2optQ2qU50iccF2wVVwGrlwNA6ougJNb2lkh0aw/formResponse',
+  // Летен информатика — отделна форма
+  linfo:   'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeAhWXZ0wkb2L9En4vrv_LX6u3htYYdfQQM_RdHFoNKVYAnJg/formResponse'
+};
 
 function getVal(id) {
   var el = document.getElementById(id);
@@ -2257,43 +2304,75 @@ function getSelectedPill(pillsId) {
   return on ? on.textContent.trim() : '';
 }
 
+function buildLinfoParams(prefix) {
+  // Летен информатика — специална форма с различни entry ID-та
+  var student = getVal(prefix + '-student');
+  var school  = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
+  var parent  = getVal(prefix + '-parent');
+  var phone   = getVal(prefix + '-phone');
+  var variant = getSelectedPill('pills-' + prefix + '-grade'); // pill-ът с вариант
+  var forma   = getSelectedPill('pills-' + prefix + '-mode') || getSelectedPill('pills-' + prefix + '-format') || '';
+  var comment = getVal(prefix + '-comment') || '';
+
+  // Преобразуване на pill текст към стойност на Google Forms
+  var variantVal = '';
+  if (variant.indexOf('Интензивен') !== -1) variantVal = 'Интензивен';
+  else if (variant.indexOf('Седмичен') !== -1) variantVal = 'Седмичен';
+
+  var formaVal = '';
+  if (forma.indexOf('Присъствено') !== -1 || forma.indexOf('Присъствен') !== -1) formaVal = 'Присъствен';
+  else if (forma.indexOf('Онлайн') !== -1) formaVal = 'Онлайн';
+  else formaVal = 'Няма значение';
+
+  var params = new URLSearchParams();
+  params.append('entry.1690000076', student);   // Ime na uchenik
+  params.append('entry.708841908',  school);    // Uchilishte
+  params.append('entry.314798686',  parent);    // Roditel
+  params.append('entry.1781191301', phone);     // Telefon
+  params.append('entry.886754292',  variantVal);// Variant
+  params.append('entry.1729647064', formaVal);  // Forma
+  params.append('entry.583777433',  comment);   // Komentar
+  return params;
+}
+
+function buildDefaultParams(prefix) {
+  var student = getVal(prefix + '-student');
+  var school  = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
+  var parent  = getVal(prefix + '-parent');
+  var phone   = getVal(prefix + '-phone');
+  var email   = getVal(prefix + '-email') || '';
+  var grade   = getSelectedPill('pills-' + prefix + '-grade');
+  var mode    = getSelectedPill('pills-' + prefix + '-mode') || getSelectedPill('pills-' + prefix + '-format') || '';
+  var comment = getVal(prefix + '-comment') || '';
+
+  var params = new URLSearchParams();
+  params.append('entry.622664022',  student);
+  params.append('entry.279089776',  school);
+  params.append('entry.1922297918', parent);
+  params.append('entry.625879832',  phone);
+  params.append('entry.552374451',  email);
+  params.append('entry.1107881791', grade);
+  params.append('entry.1416234456', mode);
+  params.append('entry.246809566',  comment);
+  return params;
+}
+
 function submitToGoogleForms(prefix, btn) {
-  // Collect fields by prefix
   var student = getVal(prefix + '-student');
   var parent  = getVal(prefix + '-parent');
   var phone   = getVal(prefix + '-phone');
 
-  // Validation
   if (!student) { alert('Моля, попълнете името на ученика.'); return; }
   if (!parent)  { alert('Моля, попълнете името на родител/настойника.'); return; }
   if (!phone)   { alert('Моля, попълнете телефон за връзка.'); return; }
 
-  var school  = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
-  var email   = getVal(prefix + '-email') || '';
-  var comment = getVal(prefix + '-comment') || '';
+  var url    = (prefix === 'linfo') ? GF_FORMS.linfo : GF_FORMS.default;
+  var params = (prefix === 'linfo') ? buildLinfoParams(prefix) : buildDefaultParams(prefix);
 
-  // Grade / mode — get the selected pill text
-  var grade = getSelectedPill('pills-' + prefix + '-grade');
-  var mode  = getSelectedPill('pills-' + prefix + '-mode');
-  // fallback: some forms use linfo-format etc.
-  if (!mode) mode = getSelectedPill('pills-' + prefix + '-format') || '';
-
-  // Build form data
-  var params = new URLSearchParams();
-  params.append('entry.622664022',  student);   // Име на ученика
-  params.append('entry.279089776',  school);    // Училище
-  params.append('entry.1922297918', parent);    // Родител
-  params.append('entry.625879832',  phone);     // Телефон
-  params.append('entry.552374451',  email);     // Имейл
-  params.append('entry.1107881791', grade);     // Клас/школа
-  params.append('entry.1416234456', mode);      // Форма
-  params.append('entry.246809566',  comment);   // Коментар
-
-  // Send via no-cors fetch (Google Forms blocks CORS — response is opaque but data arrives)
   btn.textContent = '⏳ Изпращане...';
   btn.disabled = true;
 
-  fetch(GF_URL, {
+  fetch(url, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -2301,7 +2380,6 @@ function submitToGoogleForms(prefix, btn) {
   }).then(function() {
     btn.textContent = '✅ Заявката е изпратена!';
     btn.style.background = '#3a8a10';
-    // Reset fields
     var form = btn.closest('.rform');
     if (form) {
       form.querySelectorAll('input, textarea').forEach(function(inp){ inp.value = ''; });
@@ -2313,7 +2391,6 @@ function submitToGoogleForms(prefix, btn) {
       btn.disabled = false;
     }, 5000);
   }).catch(function() {
-    // no-cors always goes to .then(), so .catch() = network error
     btn.textContent = '❌ Грешка — опитайте пак';
     btn.style.background = '#c0392b';
     btn.disabled = false;
@@ -2438,6 +2515,31 @@ function fixProgInfoHero() {
 }
 window.addEventListener('resize', fixProgInfoHero);
 fixProgInfoHero();
+
+var linfoSelectedVariant = 0;
+
+function selectLinfoVariant(v) {
+  linfoSelectedVariant = v;
+  var v1card = document.getElementById('linfo-v1-card');
+  var v2card = document.getElementById('linfo-v2-card');
+
+  if (v1card) v1card.style.borderColor = v === 1 ? 'var(--green)' : '#ffd54f';
+  if (v2card) v2card.style.borderColor = v === 2 ? 'var(--green)' : 'var(--border)';
+  if (v1card) v1card.style.background  = v === 1 ? '#f0fce6' : '#fff8e1';
+  if (v2card) v2card.style.background  = v === 2 ? '#f0fce6' : '#f3f8ff';
+
+
+
+  // Also select the corresponding pill
+  var pills = document.querySelectorAll('#pills-linfo-grade .pill');
+  pills.forEach(function(p) { p.classList.remove('on'); });
+  if (pills[v-1]) pills[v-1].classList.add('on');
+}
+
+function selectLinfoVariantPill(el, v) {
+  selectOne(el, 'linfo-grade');
+  selectLinfoVariant(v);
+}
 
 var homeLink = document.querySelector('[data-page="home"]');
 if(homeLink) homeLink.classList.add('active');
