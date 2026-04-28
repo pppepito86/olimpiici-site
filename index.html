@@ -2376,12 +2376,32 @@ function submitToGoogleForms(prefix, btn) {
   btn.textContent = '⏳ Изпращане...';
   btn.disabled = true;
 
-  fetch(url, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params.toString()
-  }).then(function() {
+  // Използваме скрит <form> + iframe — единственият начин да пратим до Google Forms без 400
+  var iframeName = 'gf-iframe-' + Date.now();
+  var iframe = document.createElement('iframe');
+  iframe.name = iframeName;
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  var hiddenForm = document.createElement('form');
+  hiddenForm.method = 'POST';
+  hiddenForm.action = url;
+  hiddenForm.target = iframeName;
+  hiddenForm.style.display = 'none';
+
+  params.forEach(function(value, key) {
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;
+    input.value = value;
+    hiddenForm.appendChild(input);
+  });
+
+  document.body.appendChild(hiddenForm);
+  hiddenForm.submit();
+
+  // Показваме успех след ~1.5 сек (не можем да четем iframe response заради CORS)
+  setTimeout(function() {
     btn.textContent = '✅ Заявката е изпратена!';
     btn.style.background = '#3a8a10';
     var form = btn.closest('.rform');
@@ -2389,16 +2409,14 @@ function submitToGoogleForms(prefix, btn) {
       form.querySelectorAll('input, textarea').forEach(function(inp){ inp.value = ''; });
       form.querySelectorAll('.pill.on').forEach(function(p){ p.classList.remove('on'); });
     }
+    document.body.removeChild(hiddenForm);
+    document.body.removeChild(iframe);
     setTimeout(function(){
       btn.textContent = 'Изпрати заявка →';
       btn.style.background = '';
       btn.disabled = false;
-    }, 5000);
-  }).catch(function() {
-    btn.textContent = '❌ Грешка — опитайте пак';
-    btn.style.background = '#c0392b';
-    btn.disabled = false;
-  });
+    }, 4000);
+  }, 1500);
 }
 
 function submitForm() {
