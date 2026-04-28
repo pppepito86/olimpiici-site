@@ -1893,6 +1893,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div class="rform">
         <div class="form-title">Записване — Летен курс Информатика</div>
         <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="linfo-student" placeholder="Три имена"></div>
+        <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="linfo-school" placeholder="Напр. 91 НЕГ, СМГ, НПМГ..."></div>
         <div class="fgrid">
           <div class="fgrp"><label>ИМЕ НА РОДИТЕЛ *</label><input type="text" id="linfo-parent" placeholder="Три имена"></div>
           <div class="fgrp"><label>ТЕЛЕФОН *</label><input type="tel" id="linfo-phone" placeholder="+359 88..."></div>
@@ -1911,6 +1912,14 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
             <span class="pill" onclick="selectOne(this,'linfo-mode')">Присъствено</span>
             <span class="pill" onclick="selectOne(this,'linfo-mode')">Онлайн</span>
             <span class="pill" onclick="selectOne(this,'linfo-mode')">Няма значение</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ИНТЕРЕС КЪМ КУРС ЗА Д ГРУПА (СЕПТЕМВРИ)?</label>
+          <div class="pills" id="pills-linfo-dgr" style="margin-top:8px">
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Да</span>
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Не</span>
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Не съм решил</span>
           </div>
         </div>
         <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="linfo-comment" placeholder="По желание..."></div>
@@ -2329,6 +2338,7 @@ function buildLinfoParams(prefix) {
   params.append('entry.1781191301', phone);
   params.append('entry.886754292',  variantVal);
   params.append('entry.1729647064', formaVal);
+  params.append('entry.1439215712', getSelectedPill('pills-' + prefix + '-dgr') || '');
   params.append('entry.583777433',  comment);
   // Required hidden fields
   params.append('fvv', '1');
