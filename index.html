@@ -2305,16 +2305,14 @@ function getSelectedPill(pillsId) {
 }
 
 function buildLinfoParams(prefix) {
-  // Летен информатика — специална форма с различни entry ID-та
   var student = getVal(prefix + '-student');
   var school  = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
   var parent  = getVal(prefix + '-parent');
   var phone   = getVal(prefix + '-phone');
-  var variant = getSelectedPill('pills-' + prefix + '-grade'); // pill-ът с вариант
+  var variant = getSelectedPill('pills-' + prefix + '-grade');
   var forma   = getSelectedPill('pills-' + prefix + '-mode') || getSelectedPill('pills-' + prefix + '-format') || '';
   var comment = getVal(prefix + '-comment') || '';
 
-  // Преобразуване на pill текст към стойност на Google Forms
   var variantVal = '';
   if (variant.indexOf('Интензивен') !== -1) variantVal = 'Интензивен';
   else if (variant.indexOf('Седмичен') !== -1) variantVal = 'Седмичен';
@@ -2325,13 +2323,18 @@ function buildLinfoParams(prefix) {
   else formaVal = 'Няма значение';
 
   var params = new URLSearchParams();
-  params.append('entry.1690000076', student);   // Ime na uchenik
-  params.append('entry.708841908',  school);    // Uchilishte
-  params.append('entry.314798686',  parent);    // Roditel
-  params.append('entry.1781191301', phone);     // Telefon
-  params.append('entry.886754292',  variantVal);// Variant
-  params.append('entry.1729647064', formaVal);  // Forma
-  params.append('entry.583777433',  comment);   // Komentar
+  params.append('entry.1690000076', student);
+  params.append('entry.708841908',  school);
+  params.append('entry.314798686',  parent);
+  params.append('entry.1781191301', phone);
+  params.append('entry.886754292',  variantVal);
+  params.append('entry.1729647064', formaVal);
+  params.append('entry.583777433',  comment);
+  // Required hidden fields
+  params.append('fvv', '1');
+  params.append('fbzx', '-1993838217932460398');
+  params.append('pageHistory', '0');
+  params.append('submissionTimestamp', '-1');
   return params;
 }
 
@@ -2367,6 +2370,7 @@ function submitToGoogleForms(prefix, btn) {
   if (!phone)   { alert('Моля, попълнете телефон за връзка.'); return; }
 
   var url    = (prefix === 'linfo') ? GF_FORMS.linfo : GF_FORMS.default;
+  url = url.replace('/u/0/', '/');
   var params = (prefix === 'linfo') ? buildLinfoParams(prefix) : buildDefaultParams(prefix);
 
   btn.textContent = '⏳ Изпращане...';
