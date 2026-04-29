@@ -67,6 +67,14 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
   .hero-btns{flex-direction:column;gap:10px;margin-bottom:24px}
   .hero-btns .btn-p,.hero-btns .btn-o{width:100%;text-align:center}
   .hero-wrap{min-height:auto}
+  #subject-cards{grid-template-columns:1fr !important}
+  #subject-cards .course-card{padding:16px !important;flex-direction:row;align-items:center;justify-content:center;text-align:center}
+  #subject-cards .course-card div[style*="font-size:36px"]{display:none !important}
+  #subject-cards .course-card div[style*="font-weight:800"]{font-size:16px !important}
+  #type-selector [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;display:grid !important}
+  .type-card{padding:14px 18px !important}
+  .type-card [style*="font-size:32px"]{display:none !important}
+  .type-card [style*="font-size:12px"]{display:none !important}
   .hp-cards{gap:12px}
   .hp-div{display:none}
   .hp-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
@@ -1818,8 +1826,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           </div>
 
           <div class="fgrp" id="math-schedule-wrap" style="display:none">
-            <label>КОИ ВРЕМЕНА СА ВИ УДОБНИ? *</label>
-            <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500">Отбележете всички удобни варианти. Групи се сформират при достатъчно желаещи.</div>
+            <label id="math-schedule-label">КОИ ВРЕМЕНА СА ВИ УДОБНИ? *</label>
             <div id="math-schedule-options" style="display:flex;flex-direction:column;gap:8px;margin-top:4px"></div>
           </div>
 
@@ -2442,60 +2449,80 @@ var MATH_SCHEDULE = {
     { label: "Четвъртък 16:00 – 18:00", value: "Опция 2" },
   ],
   "Математика за 6 клас": [
-    { label: "Вторник 16:00 – 18:00", value: "Опция 1" },
-    { label: "Събота 10:00 – 12:00", value: "Опция 2" },
+    { label: "Събота 13:00 – 16:00", value: "Опция 1" },
   ],
   "Математика за 7 клас": [
-    { label: "Сряда 16:00 – 18:00", value: "Опция 1" },
-    { label: "Събота 12:00 – 14:00", value: "Опция 2" },
+    { label: "Неделя 16:30 – 19:30 и Четвъртък 20:15 – 22:30", value: "Опция 1" },
   ],
   "Математика за 8 клас": [
-    { label: "Понеделник 18:00 – 20:00", value: "Опция 1" },
-    { label: "Петък 17:00 – 19:00", value: "Опция 2" },
+    { label: "Събота 17:00 – 20:00 и Вторник 20:15 – 22:30", value: "Опция 1" },
   ],
   "Математика за 9 клас": [
-    { label: "Вторник 18:00 – 20:00", value: "Опция 1" },
-    { label: "Събота 14:00 – 16:00", value: "Опция 2" },
+    { label: "Събота 17:00 – 20:00 и Сряда 20:15 – 22:30", value: "Опция 1" },
   ],
   "Математика за 10 клас": [
-    { label: "Четвъртък 18:00 – 20:00", value: "Опция 1" },
-    { label: "Неделя 14:00 – 16:00", value: "Опция 2" },
+    { label: "Събота 17:00 – 20:00 и Сряда 20:15 – 22:30", value: "Опция 1" },
   ],
   "Математика 11 клас": [
-    { label: "Сряда 18:00 – 20:00", value: "Опция 1" },
-    { label: "Събота 16:00 – 18:00", value: "Опция 2" },
+    { label: "Неделя 17:00 – 20:00 и Четвъртък 20:15 – 22:30", value: "Опция 1" },
   ],
   "Математика 12 клас": [
-    { label: "Петък 18:00 – 20:00", value: "Опция 1" },
-    { label: "Неделя 16:00 – 18:00", value: "Опция 2" },
+    { label: "Неделя 17:00 – 20:00 и Четвъртък 20:15 – 22:30", value: "Опция 1" },
   ],
 };
 
 function updateMathSchedule(grade) {
   var container = document.getElementById('math-schedule-options');
+  var wrap = document.getElementById('math-schedule-wrap');
+  var labelEl = document.getElementById('math-schedule-label');
   if (!container) return;
   var options = MATH_SCHEDULE[grade] || [];
   container.innerHTML = '';
-  options.forEach(function(opt) {
-    var label = document.createElement('label');
-    label.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:var(--dark);transition:all .2s;';
+  if (!options.length) { wrap.style.display = 'none'; return; }
+
+  wrap.style.display = 'block';
+
+  if (options.length === 1) {
+    // Само една опция — показваме като съобщение, изпращаме автоматично
+    labelEl.textContent = 'ВРЕМЕНА НА ПРОВЕЖДАНЕ';
+    var info = document.createElement('div');
+    info.style.cssText = 'padding:12px 16px;background:var(--gl);border:1.5px solid var(--gm);border-radius:10px;font-size:14px;font-weight:600;color:var(--gd);';
+    info.textContent = '📅 ' + options[0].label;
+    // Hidden checkbox auto-checked
     var cb = document.createElement('input');
     cb.type = 'checkbox';
-    cb.value = opt.value;
-    cb.dataset.label = opt.label;
+    cb.checked = true;
+    cb.value = options[0].value;
     cb.name = 'math-time';
-    cb.style.cssText = 'width:16px;height:16px;accent-color:var(--green);cursor:pointer;flex-shrink:0;';
-    cb.addEventListener('change', function() {
-      label.style.borderColor = this.checked ? 'var(--green)' : 'var(--border)';
-      label.style.background = this.checked ? 'var(--gl)' : '';
+    cb.style.display = 'none';
+    container.appendChild(info);
+    container.appendChild(cb);
+  } else {
+    // Няколко опции — показваме checkbox-и
+    labelEl.textContent = 'КОИ ВРЕМЕНА СА ВИ УДОБНИ? *';
+    var note = document.createElement('div');
+    note.style.cssText = 'font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500';
+    note.textContent = 'Отбележете всички удобни варианти. Групи се сформират при достатъчно желаещи.';
+    container.appendChild(note);
+    options.forEach(function(opt) {
+      var label = document.createElement('label');
+      label.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:var(--dark);transition:all .2s;';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = opt.value;
+      cb.name = 'math-time';
+      cb.style.cssText = 'width:16px;height:16px;accent-color:var(--green);cursor:pointer;flex-shrink:0;';
+      cb.addEventListener('change', function() {
+        label.style.borderColor = this.checked ? 'var(--green)' : 'var(--border)';
+        label.style.background = this.checked ? 'var(--gl)' : '';
+      });
+      var span = document.createElement('span');
+      span.textContent = opt.label;
+      label.appendChild(cb);
+      label.appendChild(span);
+      container.appendChild(label);
     });
-    var span = document.createElement('span');
-    span.textContent = opt.label;
-    label.appendChild(cb);
-    label.appendChild(span);
-    container.appendChild(label);
-  });
-  document.getElementById('math-schedule-wrap').style.display = options.length ? 'block' : 'none';
+  }
 }
 
 function buildMathParams() {
@@ -2577,7 +2604,9 @@ function submitToGoogleForms(prefix, btn) {
     if (!mathMode)        { alert('Моля, изберете форма на обучение.'); return; }
     if (!mathSource)      { alert('Моля, изберете как разбрахте за нас.'); return; }
     var checkedTimes = document.querySelectorAll('#math-schedule-options input[type=checkbox]:checked');
-    if (document.getElementById('math-schedule-wrap').style.display !== 'none' && checkedTimes.length === 0) {
+    var scheduleVisible = document.getElementById('math-schedule-wrap').style.display !== 'none';
+    var isMultiple = document.querySelectorAll('#math-schedule-options input[type=checkbox]').length > 1;
+    if (scheduleVisible && isMultiple && checkedTimes.length === 0) {
       alert('Моля, изберете поне едно удобно време.'); return;
     }
   }
