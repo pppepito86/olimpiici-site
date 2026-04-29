@@ -52,6 +52,12 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
 }
 .nav-cta:hover{background:var(--gd);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+@media(max-width:768px){
+  nav{padding:0 20px;overflow:visible}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+}
 .hamburger span{display:block;width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:all .3s}
 .mob-open .hamburger span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .mob-open .hamburger span:nth-child(2){opacity:0}
@@ -2379,53 +2385,45 @@ function submitToGoogleForms(prefix, btn) {
   if (!parent)  { alert('Моля, попълнете името на родител/настойника.'); return; }
   if (!phone)   { alert('Моля, попълнете телефон за връзка.'); return; }
 
-  var url    = (prefix === 'linfo') ? GF_FORMS.linfo : GF_FORMS.default;
-  url = url.replace('/u/0/', '/');
-  var params = (prefix === 'linfo') ? buildLinfoParams(prefix) : buildDefaultParams(prefix);
-
   btn.textContent = '⏳ Изпращане...';
   btn.disabled = true;
 
-  // Използваме fetch с no-cors + проверка дали данните са валидни преди изпращане
-  // Допълнително — изпращаме към Google Forms и следим за грешки
-  var iframeName = 'gf-iframe-' + Date.now();
-  var iframe = document.createElement('iframe');
-  iframe.name = iframeName;
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
+  // Събираме данните за Apps Script
+  var school   = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
+  var email    = getVal(prefix + '-email') || '';
+  var comment  = getVal(prefix + '-comment') || '';
+  var variant  = getSelectedPill('pills-' + prefix + '-grade') || '';
+  var forma    = getSelectedPill('pills-' + prefix + '-mode') || '';
+  var dgr      = getSelectedPill('pills-' + prefix + '-dgr') || '';
+  var grade    = getSelectedPill('pills-' + prefix + '-klас') || getSelectedPill('pills-' + prefix + '-grade2') || '';
+  var formMode = getSelectedPill('pills-' + prefix + '-forma') || '';
 
-  var hiddenForm = document.createElement('form');
-  hiddenForm.method = 'POST';
-  hiddenForm.action = url;
-  hiddenForm.target = iframeName;
-  hiddenForm.style.display = 'none';
+  var payload = {
+    form_type: prefix,
+    student:   student,
+    school:    school,
+    parent:    parent,
+    phone:     phone,
+    email:     email,
+    variant:   variant || grade,
+    forma:     forma || formMode,
+    dgr:       dgr,
+    comment:   comment
+  };
 
-  params.forEach(function(value, key) {
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    hiddenForm.appendChild(input);
-  });
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbzc_pLuJLh_a6NWbIh5gOhZw2cR2nHd1tt6YFk30UB4tcYJOBFY2teOOnPfX5gCYAZbww/exec';
 
-  document.body.appendChild(hiddenForm);
+  // 1. Пращаме към Apps Script (реален fetch — знаем дали е ОК)
+  fetch(GAS_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json.status === 'ok') {
+      // 2. Успех от Sheets — опитваме и Forms (fire-and-forget, без CORS проблем)
+      sendToGoogleForms(prefix);
 
-  // Слушаме iframe load — ако Google върне грешка, URL-ът ще се промени
-  var submitOk = false;
-  iframe.onload = function() {
-    try {
-      // Ако можем да четем href — значи е redirect (грешка от Google)
-      var iframeUrl = iframe.contentWindow.location.href;
-      // Ако съдържа 'formResponse' или 'viewform' — все пак ОК
-      if (iframeUrl && iframeUrl.indexOf('formResponse') === -1 && iframeUrl.indexOf('google') === -1) {
-        throw new Error('redirect');
-      }
-    } catch(crossOriginErr) {
-      // Cross-origin = Google Forms прие заявката (нормален случай)
-      submitOk = true;
-    }
-
-    if (submitOk) {
       btn.textContent = '✅ Заявката е изпратена!';
       btn.style.background = '#3a8a10';
       var form = btn.closest('.rform');
@@ -2439,43 +2437,61 @@ function submitToGoogleForms(prefix, btn) {
         btn.disabled = false;
       }, 4000);
     } else {
-      btn.textContent = '❌ Грешка при изпращане — опитайте пак';
-      btn.style.background = '#c0392b';
-      setTimeout(function(){
-        btn.textContent = 'Изпрати заявка →';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 4000);
+      throw new Error(json.message || 'Грешка');
     }
-    document.body.removeChild(hiddenForm);
-    document.body.removeChild(iframe);
-  };
+  })
+  .catch(function(err) {
+    console.error('GAS error:', err);
+    btn.textContent = '❌ Грешка при изпращане — опитайте пак';
+    btn.style.background = '#c0392b';
+    setTimeout(function(){
+      btn.textContent = 'Изпрати заявка →';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 4000);
+  });
+}
 
-  // Timeout — ако iframe не зареди за 8 секунди, показваме грешка
-  var timeoutId = setTimeout(function() {
-    if (!submitOk) {
-      iframe.onload = null;
-      btn.textContent = '❌ Няма връзка — опитайте пак';
-      btn.style.background = '#c0392b';
-      setTimeout(function(){
-        btn.textContent = 'Изпрати заявка →';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 4000);
+// Fire-and-forget към Google Forms (без error detection — само за backup)
+function sendToGoogleForms(prefix) {
+  try {
+    var params = (prefix === 'linfo') ? buildLinfoParams(prefix) : buildDefaultParams(prefix);
+    var url = (prefix === 'linfo') ? GF_FORMS.linfo : GF_FORMS.default;
+    url = url.replace('/u/0/', '/');
+
+    var iframeName = 'gf-ff-' + Date.now();
+    var iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = url;
+    hiddenForm.target = iframeName;
+    hiddenForm.style.display = 'none';
+
+    params.forEach(function(value, key) {
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      hiddenForm.appendChild(input);
+    });
+
+    document.body.appendChild(hiddenForm);
+    hiddenForm.submit();
+
+    // Почистваме след 5 сек
+    setTimeout(function() {
       try { document.body.removeChild(hiddenForm); } catch(e) {}
       try { document.body.removeChild(iframe); } catch(e) {}
-    }
-  }, 8000);
-
-  iframe.onload = (function(origLoad) {
-    return function() {
-      clearTimeout(timeoutId);
-      origLoad.call(this);
-    };
-  })(iframe.onload);
-
-  hiddenForm.submit();
+    }, 5000);
+  } catch(e) {
+    console.warn('Google Forms backup failed:', e);
+  }
 }
+
 
 function submitForm() {
   // Legacy call from hero section button
