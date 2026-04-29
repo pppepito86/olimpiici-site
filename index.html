@@ -67,6 +67,12 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
   .hero-btns{flex-direction:column;gap:10px;margin-bottom:24px}
   .hero-btns .btn-p,.hero-btns .btn-o{width:100%;text-align:center}
   .hero-wrap{min-height:auto}
+  .hp-cards{gap:12px}
+  .hp-div{display:none}
+  .hp-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .hp .n{font-size:16px}
+  .hp .l{font-size:11px}
+  .hp-label{font-size:10px}
 }
 .hamburger span{display:block;width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:all .3s}
 .mob-open .hamburger span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -161,7 +167,9 @@ h1.ht{font-family:'Baloo 2',cursive;font-size:52px;font-weight:800;line-height:1
 h1.ht .acc{color:var(--green)}
 .hero-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px;max-width:460px;font-weight:500}
 .hero-btns{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap}
-.hero-proof{display:flex;gap:24px;flex-wrap:wrap}
+.hero-proof{display:flex;flex-direction:column;gap:10px}
+.hp-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hp-cards{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .hp .n{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark)}
 .hp .l{font-size:12px;color:var(--muted);font-weight:600;line-height:1.3}
 .hp-div{width:1px;background:var(--border);align-self:stretch}
@@ -537,11 +545,14 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <div style="font-size:12px;font-weight:800;color:#e65100;white-space:nowrap">Запиши се →</div>
       </div>
       <div class="hero-proof fu d4">
-        <div class="hp"><div class="n">8</div><div class="l">макс. ученика<br>присъствено</div></div>
-        <div class="hp-div"></div>
-        <div class="hp"><div class="n">100%</div><div class="l">бивши<br>олимпийци</div></div>
-        <div class="hp-div"></div>
-        <div class="hp"><div class="n">НОМ</div><div class="l">НОИ · IMO<br>СМГ · НПМГ · ТУЕС</div></div>
+        <div class="hp-label">Резултати на нашите ученици от последните 5 години</div>
+        <div class="hp-cards">
+          <div class="hp"><div class="n">200+</div><div class="l">Класирани на<br>НОМ и НОИ</div></div>
+          <div class="hp-div"></div>
+          <div class="hp"><div class="n">80+</div><div class="l">Призови места на<br>НОМ и НОИ</div></div>
+          <div class="hp-div"></div>
+          <div class="hp"><div class="n">100%</div><div class="l">Учители —<br>бивши олимпийци</div></div>
+        </div>
       </div>
     </div>
     <div class="hero-right">
@@ -2274,7 +2285,7 @@ function toggleMenu() {
 
 var currentPage = 'home';
 
-function navigate(page) {
+function navigate(page, fromPopState) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-link').forEach(function(l){ l.classList.remove('active'); });
@@ -2285,7 +2296,27 @@ function navigate(page) {
   currentPage = page;
   if(page === 'prog-info') fixProgInfoHero();
   revealElements();
+  // Push to browser history (but not when called from popstate)
+  if(!fromPopState) {
+    history.pushState({page: page}, '', '#' + page);
+  }
 }
+
+// Handle browser back/forward
+window.addEventListener('popstate', function(e) {
+  var page = (e.state && e.state.page) ? e.state.page : 'home';
+  navigate(page, true);
+});
+
+// On first load — handle direct URL with hash
+(function(){
+  var hash = window.location.hash.replace('#', '');
+  if(hash && document.getElementById('page-' + hash)) {
+    navigate(hash, true);
+  } else {
+    history.replaceState({page: 'home'}, '', '#home');
+  }
+})();
 
 function revealElements() {
   setTimeout(function(){
