@@ -1841,7 +1841,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           </div>
 
           <button class="fsub" onclick="submitToGoogleForms('math', this)">Изпрати заявка →</button>
-          <p class="fnote">✅ Ще се свържем с вас в рамките на една седмица</p>
+          <p class="fnote">* Задължителни полета</p>
         </div>
       </div>
     </div>
@@ -2565,10 +2565,17 @@ function submitToGoogleForms(prefix, btn) {
   if (prefix === 'math') {
     var mathSchool = getSelectedPill('pills-math-school');
     var mathStuPhone = getVal('math-student-phone');
+    var mathUchilishte = getVal('math-училище');
     var mathEmail = getVal('math-email');
-    if (!mathSchool)   { alert('Моля, изберете школа.'); return; }
-    if (!mathStuPhone) { alert('Моля, попълнете телефон на ученика.'); return; }
-    if (!mathEmail)    { alert('Моля, попълнете имейл на родител.'); return; }
+    var mathMode = getSelectedPill('pills-math-mode');
+    var mathSource = getSelectedPill('pills-math-source');
+    if (!mathSchool)      { alert('Моля, изберете клас.'); return; }
+    if (!mathStuPhone)    { alert('Моля, попълнете телефон на ученика.'); return; }
+    if (!mathUchilishte)  { alert('Моля, попълнете училище.'); return; }
+    if (!mathEmail)       { alert('Моля, попълнете имейл на родител.'); return; }
+    if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mathEmail))) { alert('Моля, въведете валиден имейл адрес.'); return; }
+    if (!mathMode)        { alert('Моля, изберете форма на обучение.'); return; }
+    if (!mathSource)      { alert('Моля, изберете как разбрахте за нас.'); return; }
     var checkedTimes = document.querySelectorAll('#math-schedule-options input[type=checkbox]:checked');
     if (document.getElementById('math-schedule-wrap').style.display !== 'none' && checkedTimes.length === 0) {
       alert('Моля, изберете поне едно удобно време.'); return;
