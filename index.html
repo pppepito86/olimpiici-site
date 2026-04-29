@@ -552,10 +552,9 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <div class="hero-left">
       <div class="hero-badge fu"><span class="pdot"></span>Школа за бъдещи шампиони</div>
       <h1 class="ht fu d1"><span class="acc">Олимпийци</span> —<br>школа по математика<br>и информатика</h1>
-      <p class="hero-sub fu d2">Малки групи, бивши олимпийци като учители, доказана подготовка за НОМ, НОИ и елитни гимназии.</p>
+      <p class="hero-sub fu d2">Олимпиади и прием в СМГ и НПМГ.<br>Подготовка с реални резултати.<br>За ученици от 3. до 12. клас</p>
       <div class="hero-btns fu d3">
-        <button class="btn-p" onclick="navigate('contact')">Тествай потенциала си ✨</button>
-        <button class="btn-o" onclick="navigate('programs')">Разгледай курсовете</button>
+        <button class="btn-o" onclick="navigate('programs')">Избери курс</button>
       </div>
       <!-- SUMMER BANNER -->
       <div class="fu d4" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1.5px solid #ffd54f;border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;cursor:pointer" onclick="navigate('zapisvane');setSummerCourse()">
@@ -564,7 +563,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:2px">Летни курсове 2026 — Записването е отворено!</div>
           <div style="font-size:12px;color:#bf6000;font-weight:500">Интензивни и седмични курсове по математика и информатика</div>
         </div>
-        <div style="font-size:12px;font-weight:800;color:#e65100;white-space:nowrap">Запиши се →</div>
+
       </div>
       <div class="hero-proof fu d4">
         <div class="hp-label">Резултати на нашите ученици от последните 5 години</div>
@@ -579,10 +578,10 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     </div>
     <div class="hero-right">
       <div class="hcards">
-        <div class="hcard" onclick="navigate('prog-math')"><div class="ico">➕</div><div class="lbl">Математика</div><div class="sub">НОМ · IMO</div></div>
-        <div class="hcard" onclick="navigate('prog-info')"><div class="ico">💻</div><div class="lbl">Информатика</div><div class="sub">НОИ · IOI</div></div>
-        <div class="hcard" onclick="navigate('prog-math')"><div class="ico">🥇</div><div class="lbl">Олимпиади</div><div class="sub">Национални</div></div>
-        <div class="hcard" onclick="navigate('prog-kg')"><div class="ico">🏫</div><div class="lbl">Кандидатстване</div><div class="sub">СМГ · НПМГ · ТУЕС</div></div>
+        <div class="hcard" onclick="navigate('prog-kg')"><div class="ico">🏫</div><div class="lbl">Прием в СМГ и НПМГ</div><div class="sub">Подготовка за изпита</div><div class="sub" style="margin-top:4px">Увереност и спокойствие на изпита</div></div>
+        <div class="hcard" onclick="navigate('prog-math')"><div class="ico">🥇</div><div class="lbl">Олимпиади по математика</div><div class="sub">Подготовка с реални състезателни задачи</div><div class="sub" style="margin-top:4px">Увереност и високи резултати</div></div>
+        <div class="hcard" onclick="navigate('prog-info')"><div class="ico">💻</div><div class="lbl">Олимпиади по информатика</div><div class="sub">Подготовка за НОИ и състезания</div><div class="sub" style="margin-top:4px">Реални задачи и алгоритмично мислене</div></div>
+        <div class="hcard" onclick="navigate('results')"><div class="ico">🏆</div><div class="lbl">Резултати от състезания</div><div class="sub">Призови места и класирания</div><div class="sub" style="margin-top:4px">Виж постиженията на учениците</div></div>
       </div>
     </div>
   </section>
@@ -1068,10 +1067,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
     </div>
 
-    <div style="margin-top:32px;background:var(--gl);border-radius:var(--rl);padding:24px 28px;border:1px solid var(--gm)">
-      <div style="font-weight:800;color:var(--gd);margin-bottom:8px">📌 Забележка за таксите</div>
-      <p style="font-size:13px;color:var(--muted);font-weight:500;line-height:1.6;margin:0">Всички курсове се провеждат <strong>присъствено и онлайн едновременно</strong>. Таксите са в евро по фиксиран курс. Началната дата е в последните 10 дни на септември в зависимост от избраното при записването.</p>
-    </div>
+
 
     <div style="text-align:center;margin-top:40px">
       <button class="btn-p" onclick="navigate('zapisvane')">Запишете се →</button>
@@ -1452,106 +1448,6 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         </div>
       </div>
     </div>
-  </section>
-  <footer id="teachers-footer"></footer>
-</div>
-
-<!-- ════════════════════════════════════
-     RESULTS PAGE
-════════════════════════════════════ -->
-<div id="page-results" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span>Успехи</div>
-  <section class="section">
-    <div class="eyebrow rv">Успехи</div>
-    <div class="sec-title rv">Числата говорят сами</div>
-    <p class="sec-sub rv">Реални резултати от реални ученици. Всяка година добавяме нови.</p>
-    <div class="results-grid">
-      <div class="result-card rv"><div class="result-ico">💻</div><div class="result-num">49</div><div class="result-lbl">Места в Топ 3 на НОИ (2019–2025/26)</div></div>
-      <div class="result-card rv"><div class="result-ico">📐</div><div class="result-num">X</div><div class="result-lbl">Места в Топ 3 на НОМ (2019–2025/26)</div></div>
-      <div class="result-card rv"><div class="result-ico">🥇</div><div class="result-num">10</div><div class="result-lbl">Златни медала BOI · IOI · EJOI</div></div>
-      <div class="result-card rv"><div class="result-ico">🥈</div><div class="result-num">10</div><div class="result-lbl">Сребърни медала</div></div>
-      <div class="result-card rv"><div class="result-ico">🥉</div><div class="result-num">17</div><div class="result-lbl">Бронзови медала</div></div>
-      <div class="result-card rv"><div class="result-ico">🌍</div><div class="result-num">37</div><div class="result-lbl">Общо международни медала</div></div>
-    </div>
-  </section>
-  <section class="section section-alt rv">
-    <div class="eyebrow">Хронология</div>
-    <div class="sec-title">Избрани постижения</div>
-    <p class="sec-sub">Някои от най-гордите моменти на нашите ученици.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
-      <div>
-        <h3 style="font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark);margin-bottom:20px">💻 Състезателна информатика</h3>
-        <div class="timeline">
-          <div class="tl-item rv">
-            <div class="tl-year">НОИ 2026</div>
-            <div class="tl-title">🏆 Абсолютен шампион</div>
-            <div class="tl-desc">Андрей Стефанов — 1-во място абсолютно</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">IOI 2025</div>
-            <div class="tl-title">🥇 Златен медал</div>
-            <div class="tl-desc">Александър Гатев — златен медал на Международната олимпиада по информатика</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">BOI 2025</div>
-            <div class="tl-title">🏆 Абсолютен шампион на BOI</div>
-            <div class="tl-desc">Андрей Стефанов — златен медал и абсолютно 1-во място</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">JBOI 2025</div>
-            <div class="tl-title">🏆 1-во и 3-то място абсолютно</div>
-            <div class="tl-desc">Мартин Чавдаров и Кирил Зулямски — златни медали и абсолютни шампиони</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">НОИ 2025</div>
-            <div class="tl-title">🏆 Абсолютен шампион</div>
-            <div class="tl-desc">Борис Михов — 1-во място абсолютно</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">BOI 2024</div>
-            <div class="tl-title">🥇 2-ро и 4-то място абсолютно</div>
-            <div class="tl-desc">Борис Михов и Андрей Стефанов — златни медали</div>
-          </div>
-          <div class="tl-item rv">
-            <div class="tl-year">EJOI 2023</div>
-            <div class="tl-title">🏆 Абсолютен шампион на EJOI</div>
-            <div class="tl-desc">Андрей Стефанов — златен медал и абсолютно 1-во място</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h3 style="font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark);margin-bottom:20px">📐 Състезателна математика</h3>
-        <div class="timeline">
-          <div class="tl-item rv">
-            <div class="tl-year">НОМ 2025/26</div>
-            <div class="tl-title">⏳ Предстои</div>
-            <div class="tl-desc">Данните ще бъдат добавени след националния кръг</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section rv" style="background:#0f2206">
-    <div class="eyebrow wh">Кандидатстване след 4. и 7. класи</div>
-    <div class="sec-title wh">Прием в топ гимназии</div>
-    <p class="sec-sub wh">Всеки ученик, преминал нашия курс за кандидатстване след 4. и 7. класи, е приет в желаната гимназия.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
-      <div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:28px;text-align:center;border:1px solid rgba(106,191,60,.2)" class="rv"><div style="font-size:32px;margin-bottom:12px">🔬</div><div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--green)">ТУЕС</div><div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:6px">Технологично училище "Електронни системи"</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:28px;text-align:center;border:1px solid rgba(106,191,60,.2)" class="rv"><div style="font-size:32px;margin-bottom:12px">🧪</div><div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--green)">НПМГ</div><div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:6px">Национална природо-математическа гимназия</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:28px;text-align:center;border:1px solid rgba(106,191,60,.2)" class="rv"><div style="font-size:32px;margin-bottom:12px">📐</div><div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--green)">СМГ</div><div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:6px">Софийска математическа гимназия</div></div>
-    </div>
-  </section>
-  <section class="section" style="background:#0a1a05">
-    <div class="eyebrow wh rv">Хората зад медалите</div>
-    <div class="sec-title wh rv">Нашите шампиони</div>
-    <p class="sec-sub wh rv">Реални ученици с реални истории. Запознайте се с тях.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" class="rv">
-      
-      <div style="background:rgba(255,255,255,.04);border-radius:var(--rl);overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-          </div>
-        </div>
-
   </section>
   <footer id="teachers-footer"></footer>
 </div>
