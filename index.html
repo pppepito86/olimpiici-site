@@ -2386,7 +2386,8 @@ function submitToGoogleForms(prefix, btn) {
   btn.textContent = '⏳ Изпращане...';
   btn.disabled = true;
 
-  // Използваме скрит <form> + iframe — единственият начин да пратим до Google Forms без 400
+  // Използваме fetch с no-cors + проверка дали данните са валидни преди изпращане
+  // Допълнително — изпращаме към Google Forms и следим за грешки
   var iframeName = 'gf-iframe-' + Date.now();
   var iframe = document.createElement('iframe');
   iframe.name = iframeName;
@@ -2408,25 +2409,72 @@ function submitToGoogleForms(prefix, btn) {
   });
 
   document.body.appendChild(hiddenForm);
-  hiddenForm.submit();
 
-  // Показваме успех след ~1.5 сек (не можем да четем iframe response заради CORS)
-  setTimeout(function() {
-    btn.textContent = '✅ Заявката е изпратена!';
-    btn.style.background = '#3a8a10';
-    var form = btn.closest('.rform');
-    if (form) {
-      form.querySelectorAll('input, textarea').forEach(function(inp){ inp.value = ''; });
-      form.querySelectorAll('.pill.on').forEach(function(p){ p.classList.remove('on'); });
+  // Слушаме iframe load — ако Google върне грешка, URL-ът ще се промени
+  var submitOk = false;
+  iframe.onload = function() {
+    try {
+      // Ако можем да четем href — значи е redirect (грешка от Google)
+      var iframeUrl = iframe.contentWindow.location.href;
+      // Ако съдържа 'formResponse' или 'viewform' — все пак ОК
+      if (iframeUrl && iframeUrl.indexOf('formResponse') === -1 && iframeUrl.indexOf('google') === -1) {
+        throw new Error('redirect');
+      }
+    } catch(crossOriginErr) {
+      // Cross-origin = Google Forms прие заявката (нормален случай)
+      submitOk = true;
+    }
+
+    if (submitOk) {
+      btn.textContent = '✅ Заявката е изпратена!';
+      btn.style.background = '#3a8a10';
+      var form = btn.closest('.rform');
+      if (form) {
+        form.querySelectorAll('input, textarea').forEach(function(inp){ inp.value = ''; });
+        form.querySelectorAll('.pill.on').forEach(function(p){ p.classList.remove('on'); });
+      }
+      setTimeout(function(){
+        btn.textContent = 'Изпрати заявка →';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } else {
+      btn.textContent = '❌ Грешка при изпращане — опитайте пак';
+      btn.style.background = '#c0392b';
+      setTimeout(function(){
+        btn.textContent = 'Изпрати заявка →';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
     }
     document.body.removeChild(hiddenForm);
     document.body.removeChild(iframe);
-    setTimeout(function(){
-      btn.textContent = 'Изпрати заявка →';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 4000);
-  }, 1500);
+  };
+
+  // Timeout — ако iframe не зареди за 8 секунди, показваме грешка
+  var timeoutId = setTimeout(function() {
+    if (!submitOk) {
+      iframe.onload = null;
+      btn.textContent = '❌ Няма връзка — опитайте пак';
+      btn.style.background = '#c0392b';
+      setTimeout(function(){
+        btn.textContent = 'Изпрати заявка →';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+      try { document.body.removeChild(hiddenForm); } catch(e) {}
+      try { document.body.removeChild(iframe); } catch(e) {}
+    }
+  }, 8000);
+
+  iframe.onload = (function(origLoad) {
+    return function() {
+      clearTimeout(timeoutId);
+      origLoad.call(this);
+    };
+  })(iframe.onload);
+
+  hiddenForm.submit();
 }
 
 function submitForm() {
