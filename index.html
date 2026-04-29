@@ -1620,7 +1620,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase">Стъпка 2 — Изберете тип курс</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
-          <div class="type-card" onclick="selectType('годишен')"
+          <div class="type-card" onclick="selectType('годишен', this)"
             style="border:2px solid var(--border);border-radius:var(--r);padding:22px 24px;cursor:pointer;background:var(--bg2);transition:all .2s;display:flex;align-items:center;gap:16px">
             <div style="font-size:32px;flex-shrink:0">📅</div>
             <div>
@@ -1629,7 +1629,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
             </div>
           </div>
 
-          <div class="type-card" onclick="selectType('летен')"
+          <div class="type-card" onclick="selectType('летен', this)"
             style="border:2px solid #ffd54f;border-radius:var(--r);padding:22px 24px;cursor:pointer;background:#fff8e1;transition:all .2s;display:flex;align-items:center;gap:16px;position:relative">
             <div style="position:absolute;top:-10px;right:16px;background:#e65100;color:white;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px">☀️ НОВО</div>
             <div style="font-size:32px;flex-shrink:0">☀️</div>
@@ -1729,6 +1729,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
           <button class="fsub" onclick="submitToGoogleForms('info', this)">Изпрати заявка →</button>
           <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+        </div>
       </div>
     </div>
 
@@ -1741,7 +1742,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <!-- LEFT: Info -->
         <div>
           <div style="background:var(--bg2);border-radius:var(--rl);padding:28px;border:1.5px solid var(--border);margin-bottom:24px">
-            <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:12px">📐 Математика 2026/2027</div>
+            <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:12px">📐 Състезателна математика 2026/2027</div>
             <div style="display:flex;flex-direction:column;gap:8px">
               <div style="font-size:13px;color:var(--muted);font-weight:500">📅 <strong>15 септември – 15 юни</strong></div>
               <div style="font-size:13px;color:var(--muted);font-weight:500">📍 ул. Екзарх Йосиф 73</div>
@@ -1759,18 +1760,41 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           <div class="form-title">Записване — Математика</div>
 
           <div class="fgrp">
-            <label>ИМЕ НА УЧЕНИКА *</label>
-            <input type="text" id="math-student" placeholder="Три имена">
+            <label>ИНТЕРЕСУВАМ СЕ ОТ *</label>
+            <div class="pills" style="margin-top:8px" id="pills-math-school">
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 3 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 4 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 5 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 6 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 7 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 8 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 9 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 10 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика 11 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика 12 клас</span>
+            </div>
+          </div>
+
+          <div class="fgrid">
+            <div class="fgrp" style="grid-column:1/-1">
+              <label>ИМЕ НА УЧЕНИКА *</label>
+              <input type="text" id="math-student" placeholder="Три имена">
+            </div>
           </div>
 
           <div class="fgrp">
-            <label>УЧИЛИЩЕ</label>
-            <input type="text" id="math-school" placeholder="Название на училището">
+            <label>УЧИЛИЩЕ *</label>
+            <input type="text" id="math-училище" placeholder="Название на училището">
+          </div>
+
+          <div class="fgrp">
+            <label>ТЕЛЕФОН НА УЧЕНИКА (за Viber групите) *</label>
+            <input type="tel" id="math-student-phone" placeholder="+359 88...">
           </div>
 
           <div class="fgrid">
             <div class="fgrp">
-              <label>ИМЕ НА РОДИТЕЛ/НАСТОЙНИК *</label>
+              <label>ИМЕ НА РОДИТЕЛ *</label>
               <input type="text" id="math-parent" placeholder="Три имена">
             </div>
             <div class="fgrp">
@@ -1780,22 +1804,8 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           </div>
 
           <div class="fgrp">
-            <label>ИМЕЙЛ НА РОДИТЕЛ</label>
+            <label>ИМЕЙЛ НА РОДИТЕЛ *</label>
             <input type="email" id="math-email" placeholder="email@example.com">
-          </div>
-
-          <div class="fgrp">
-            <label>КЛАС *</label>
-            <div class="pills" style="margin-top:8px" id="pills-math-grade">
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 5 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 6 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 7 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 8 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 9 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 10 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 11 клас</span>
-              <span class="pill" onclick="selectOne(this,'math-grade')">Информатика за 12 клас</span>
-            </div>
           </div>
 
           <div class="fgrp">
@@ -1807,19 +1817,36 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
             </div>
           </div>
 
+          <div class="fgrp" id="math-schedule-wrap" style="display:none">
+            <label>КОИ ВРЕМЕНА СА ВИ УДОБНИ? *</label>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500">Отбележете всички удобни варианти. Групи се сформират при достатъчно желаещи.</div>
+            <div id="math-schedule-options" style="display:flex;flex-direction:column;gap:8px;margin-top:4px"></div>
+          </div>
+
+          <div class="fgrp">
+            <label>КАК РАЗБРАХТЕ ЗА НАС? *</label>
+            <div class="pills" style="margin-top:8px" id="pills-math-source">
+              <span class="pill" onclick="selectOne(this,'math-source')">Данибон</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">Алек Димитров</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">Вече сте посещавали наши курсове.</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От сайта ни (olimpiici.com).</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От фейсбук страницата ни.</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От приятел/познат.</span>
+            </div>
+          </div>
+
           <div class="fgrp">
             <label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label>
             <input type="text" id="math-comment" placeholder="По желание...">
           </div>
 
           <button class="fsub" onclick="submitToGoogleForms('math', this)">Изпрати заявка →</button>
-          <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+          <p class="fnote">✅ Ще се свържем с вас в рамките на една седмица</p>
         </div>
       </div>
     </div>
 
-
-  <!-- ГОДИШЕН-КГ FORM -->
+<!-- ГОДИШЕН-КГ FORM -->
   <div id="form-годишен-кг" style="display:none" class="form-step3">
         <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
         <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
@@ -2345,8 +2372,10 @@ function showDay(idx, tab) {
 
 // ── Google Forms URLs ──────────────────────────────────────────
 var GF_FORMS = {
-  // Годишен — обща форма (info, math, kg, lmat, lkg)
+  // Годишен — обща форма (info, kg, lmat, lkg)
   default: 'https://docs.google.com/forms/d/e/1FAIpQLSf9oka4j2w2optQ2qU50iccF2wVVwGrlwNA6ougJNb2lkh0aw/formResponse',
+  // Математика — отделна форма
+  math: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdEZpigsgD3adAe-uBnvUhn0P8_bjNnutiEdGb3VdThfwtizA/formResponse',
   // Летен информатика — отделна форма
   linfo:   'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeAhWXZ0wkb2L9En4vrv_LX6u3htYYdfQQM_RdHFoNKVYAnJg/formResponse'
 };
@@ -2398,6 +2427,111 @@ function buildLinfoParams(prefix) {
   return params;
 }
 
+var MATH_SCHEDULE = {
+  "Математика за 3 клас": [
+    { label: "Понеделник 13:00 – 15:00", value: "Опция 1" },
+    { label: "Вторник 13:00 – 15:00", value: "Опция 2" },
+  ],
+  "Математика за 4 клас": [
+    { label: "Вторник 14:00 – 16:00", value: "Опция 1" },
+    { label: "Сряда 14:00 – 16:00", value: "Опция 2" },
+    { label: "Неделя 10:00 – 13:00", value: "Опция 3" },
+  ],
+  "Математика за 5 клас": [
+    { label: "Понеделник 16:00 – 18:00", value: "Опция 1" },
+    { label: "Четвъртък 16:00 – 18:00", value: "Опция 2" },
+  ],
+  "Математика за 6 клас": [
+    { label: "Вторник 16:00 – 18:00", value: "Опция 1" },
+    { label: "Събота 10:00 – 12:00", value: "Опция 2" },
+  ],
+  "Математика за 7 клас": [
+    { label: "Сряда 16:00 – 18:00", value: "Опция 1" },
+    { label: "Събота 12:00 – 14:00", value: "Опция 2" },
+  ],
+  "Математика за 8 клас": [
+    { label: "Понеделник 18:00 – 20:00", value: "Опция 1" },
+    { label: "Петък 17:00 – 19:00", value: "Опция 2" },
+  ],
+  "Математика за 9 клас": [
+    { label: "Вторник 18:00 – 20:00", value: "Опция 1" },
+    { label: "Събота 14:00 – 16:00", value: "Опция 2" },
+  ],
+  "Математика за 10 клас": [
+    { label: "Четвъртък 18:00 – 20:00", value: "Опция 1" },
+    { label: "Неделя 14:00 – 16:00", value: "Опция 2" },
+  ],
+  "Математика 11 клас": [
+    { label: "Сряда 18:00 – 20:00", value: "Опция 1" },
+    { label: "Събота 16:00 – 18:00", value: "Опция 2" },
+  ],
+  "Математика 12 клас": [
+    { label: "Петък 18:00 – 20:00", value: "Опция 1" },
+    { label: "Неделя 16:00 – 18:00", value: "Опция 2" },
+  ],
+};
+
+function updateMathSchedule(grade) {
+  var container = document.getElementById('math-schedule-options');
+  if (!container) return;
+  var options = MATH_SCHEDULE[grade] || [];
+  container.innerHTML = '';
+  options.forEach(function(opt) {
+    var label = document.createElement('label');
+    label.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:var(--dark);transition:all .2s;';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = opt.value;
+    cb.dataset.label = opt.label;
+    cb.name = 'math-time';
+    cb.style.cssText = 'width:16px;height:16px;accent-color:var(--green);cursor:pointer;flex-shrink:0;';
+    cb.addEventListener('change', function() {
+      label.style.borderColor = this.checked ? 'var(--green)' : 'var(--border)';
+      label.style.background = this.checked ? 'var(--gl)' : '';
+    });
+    var span = document.createElement('span');
+    span.textContent = opt.label;
+    label.appendChild(cb);
+    label.appendChild(span);
+    container.appendChild(label);
+  });
+  document.getElementById('math-schedule-wrap').style.display = options.length ? 'block' : 'none';
+}
+
+function buildMathParams() {
+  var school    = getSelectedPill('pills-math-school') || '';
+  var student   = getVal('math-student');
+  var училище   = getVal('math-училище') || '';
+  var stuPhone  = getVal('math-student-phone') || '';
+  var parent    = getVal('math-parent');
+  var phone     = getVal('math-phone');
+  var email     = getVal('math-email') || '';
+  var mode      = getSelectedPill('pills-math-mode') || '';
+  var source    = getSelectedPill('pills-math-source') || '';
+  var comment   = getVal('math-comment') || '';
+
+  var params = new URLSearchParams();
+  params.append('entry.1270370571', school);
+  params.append('entry.1512767394', student);
+  params.append('entry.666939493',  училище);
+  params.append('entry.2013505468', stuPhone);
+  params.append('entry.1543559985', parent);
+  params.append('entry.1616618070', phone);
+  params.append('entry.1109161686', email);
+  params.append('entry.1404918652', mode);
+  params.append('entry.2048661200', source);
+  params.append('entry.92124711',   comment);
+  // Избрани времена (checkbox-и)
+  document.querySelectorAll('#math-schedule-options input[type=checkbox]:checked').forEach(function(cb) {
+    params.append('entry.1754310435', cb.value);
+  });
+  params.append('fvv', '1');
+  params.append('fbzx', '-4482582470081292972');
+  params.append('pageHistory', '0');
+  params.append('submissionTimestamp', '-1');
+  return params;
+}
+
 function buildDefaultParams(prefix) {
   var student = getVal(prefix + '-student');
   var school  = getVal(prefix + '-school') || getVal(prefix + '-school-name') || '';
@@ -2428,6 +2562,18 @@ function submitToGoogleForms(prefix, btn) {
   if (!student) { alert('Моля, попълнете името на ученика.'); return; }
   if (!parent)  { alert('Моля, попълнете името на родител/настойника.'); return; }
   if (!phone)   { alert('Моля, попълнете телефон за връзка.'); return; }
+  if (prefix === 'math') {
+    var mathSchool = getSelectedPill('pills-math-school');
+    var mathStuPhone = getVal('math-student-phone');
+    var mathEmail = getVal('math-email');
+    if (!mathSchool)   { alert('Моля, изберете школа.'); return; }
+    if (!mathStuPhone) { alert('Моля, попълнете телефон на ученика.'); return; }
+    if (!mathEmail)    { alert('Моля, попълнете имейл на родител.'); return; }
+    var checkedTimes = document.querySelectorAll('#math-schedule-options input[type=checkbox]:checked');
+    if (document.getElementById('math-schedule-wrap').style.display !== 'none' && checkedTimes.length === 0) {
+      alert('Моля, изберете поне едно удобно време.'); return;
+    }
+  }
 
   btn.textContent = '⏳ Изпращане...';
   btn.disabled = true;
@@ -2445,7 +2591,7 @@ function submitToGoogleForms(prefix, btn) {
   var payload = {
     form_type: prefix,
     student:   student,
-    school:    school,
+    school:    prefix === 'math' ? getSelectedPill('pills-math-school') || '' : school,
     parent:    parent,
     phone:     phone,
     email:     email,
@@ -2454,6 +2600,11 @@ function submitToGoogleForms(prefix, btn) {
     dgr:       dgr,
     comment:   comment
   };
+  if (prefix === 'math') {
+    payload.student_phone = getVal('math-student-phone') || '';
+    payload.source = getSelectedPill('pills-math-source') || '';
+    payload.school_name = getVal('math-училище') || '';
+  }
 
   var GAS_URL = 'https://script.google.com/macros/s/AKfycbzc_pLuJLh_a6NWbIh5gOhZw2cR2nHd1tt6YFk30UB4tcYJOBFY2teOOnPfX5gCYAZbww/exec';
 
@@ -2499,8 +2650,17 @@ function submitToGoogleForms(prefix, btn) {
 // Fire-and-forget към Google Forms (без error detection — само за backup)
 function sendToGoogleForms(prefix) {
   try {
-    var params = (prefix === 'linfo') ? buildLinfoParams(prefix) : buildDefaultParams(prefix);
-    var url = (prefix === 'linfo') ? GF_FORMS.linfo : GF_FORMS.default;
+    var params, url;
+    if (prefix === 'linfo') {
+      params = buildLinfoParams(prefix);
+      url = GF_FORMS.linfo;
+    } else if (prefix === 'math') {
+      params = buildMathParams();
+      url = GF_FORMS.math;
+    } else {
+      params = buildDefaultParams(prefix);
+      url = GF_FORMS.default;
+    }
     url = url.replace('/u/0/', '/');
 
     var iframeName = 'gf-ff-' + Date.now();
@@ -2574,16 +2734,18 @@ function selectSubject(subject, card) {
   hideAllForms();
 }
 
-function selectType(type) {
-  if(!selectedSubject) return;
+function selectType(type, cardEl) {
+  if(!selectedSubject) { console.log('NO SUBJECT!'); return; }
   document.querySelectorAll('.type-card').forEach(function(c){
     c.style.borderColor = c.style.background.includes('fff8e1') ? '#ffd54f' : 'var(--border)';
     c.style.transform = '';
     c.style.boxShadow = '';
   });
-  event.currentTarget.style.borderColor = 'var(--green)';
-  event.currentTarget.style.transform = 'translateY(-3px)';
-  event.currentTarget.style.boxShadow = '0 8px 24px rgba(106,191,60,.2)';
+  if(cardEl) {
+    cardEl.style.borderColor = 'var(--green)';
+    cardEl.style.transform = 'translateY(-3px)';
+    cardEl.style.boxShadow = '0 8px 24px rgba(106,191,60,.2)';
+  }
   var map = {
     'годишен-info': 'form-info',
     'годишен-math': 'form-math',
@@ -2597,6 +2759,7 @@ function selectType(type) {
   var formEl = document.getElementById(map[key]);
   if(formEl) {
     formEl.style.display = 'block';
+    console.log('display set to block, actual display:', formEl.style.display, 'parent display:', formEl.parentElement.style.display);
     setTimeout(function(){ formEl.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
   }
 }
@@ -2686,3 +2849,7 @@ if(homeLink) homeLink.classList.add('active');
 </script>
 </body>
 </html>
+
+  </div>
+  </div>
+
