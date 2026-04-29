@@ -67,6 +67,14 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
   .hero-btns{flex-direction:column;gap:10px;margin-bottom:24px}
   .hero-btns .btn-p,.hero-btns .btn-o{width:100%;text-align:center}
   .hero-wrap{min-height:auto}
+  #prog-math-hero{grid-template-columns:1fr !important;padding:28px 20px 24px !important}
+  #prog-math-hero .prog-detail-visual{display:none}
+  #prog-math-hero h1{font-size:28px !important}
+  #page-prog-math .section{padding:32px 20px !important}
+  #page-prog-math [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+  #page-prog-math [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+  #page-prog-math [style*="display:flex;align-items:flex-start;justify-content:space-between"]{flex-direction:column}
+  #page-prog-math [style*="text-align:right;flex-shrink:0"]{text-align:left !important}
   #subject-cards{grid-template-columns:1fr !important}
   #subject-cards .course-card{padding:16px !important;flex-direction:row;align-items:center;justify-content:center;text-align:center}
   #subject-cards .course-card div[style*="font-size:36px"]{display:none !important}
@@ -637,14 +645,14 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <div class="prog-grid">
       <div class="prog-card pc-m rv" onclick="navigate('prog-math')">
         <div class="prog-ico">➕</div>
-        <h3>Курс по състезателна математика</h3>
+        <h3>Курсове по състезателна математика</h3>
         <p>Алгебра, геометрия, комбинаторика. Систематична подготовка за НОМ.</p>
         <div class="prog-tags"><span class="ptag pg">5–12 клас</span><span class="ptag pg">НОМ · IMO</span></div>
         <div class="prog-link">Виж програмата</div>
       </div>
       <div class="prog-card pc-i rv" onclick="navigate('prog-info')">
         <div class="prog-ico">💻</div>
-        <h3>Курс по състезателна информатика</h3>
+        <h3>Курсове по състезателна информатика</h3>
         <p>Алгоритми и C++. Подготовка за НОИ и международни олимпиади.</p>
         <div class="prog-tags"><span class="ptag pb">6–12 клас</span><span class="ptag pb">НОИ · IOI</span></div>
         <div class="prog-link">Виж програмата</div>
@@ -801,13 +809,13 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <p class="sec-sub rv">Специализирани курсове с опитни учители.</p>
     <div class="prog-grid">
       <div class="prog-card pc-m rv" onclick="navigate('prog-math')">
-        <div class="prog-ico">➕</div><h3>Курс по състезателна математика</h3>
+        <div class="prog-ico">➕</div><h3>Курсове по състезателна математика</h3>
         <p>Алгебра, геометрия, комбинаторика. Систематична подготовка за НОМ от общински до национален кръг.</p>
         <div class="prog-tags"><span class="ptag pg">5–12 клас</span><span class="ptag pg">Нач. & Напр.</span><span class="ptag pg">НОМ · IMO</span></div>
         <div class="prog-link">Виж детайли</div>
       </div>
       <div class="prog-card pc-i rv" onclick="navigate('prog-info')">
-        <div class="prog-ico">💻</div><h3>Курс по състезателна информатика</h3>
+        <div class="prog-ico">💻</div><h3>Курсове по състезателна информатика</h3>
         <p>Алгоритми, структури от данни и C++. Подготовка за НОИ и международни олимпиади.</p>
         <div class="prog-tags"><span class="ptag pb">6–12 клас</span><span class="ptag pb">C++</span><span class="ptag pb">НОИ · IOI</span></div>
         <div class="prog-link">Виж детайли</div>
@@ -867,11 +875,11 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAM DETAIL: MATEMATIKA
 ════════════════════════════════════ -->
 <div id="page-prog-math" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Курс по състезателна математика</div>
-  <div class="prog-detail-hero math">
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Курсове по състезателна математика</div>
+  <div class="prog-detail-hero math" id="prog-math-hero">
     <div>
-      <div class="prog-detail-badge" style="background:var(--gl);color:var(--gd)">➕ Математика</div>
-      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Курс по състезателна математика</h1>
+      <div class="prog-detail-badge" style="background:var(--gl);color:var(--gd)">➕ Състезателна математика</div>
+      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Курсове по състезателна математика</h1>
       <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:24px">Системна подготовка за НОМ — от общински до национален кръг. Алгебра, геометрия, комбинаторика и теория на числата с бивши олимпийски медалисти.</p>
       <div class="prog-tags" style="margin-bottom:24px"><span class="ptag pg">5–12 клас</span><span class="ptag pg">Начинаещи</span><span class="ptag pg">Напреднали</span><span class="ptag pg">НОМ · IMO</span></div>
       <button class="btn-p" onclick="navigate('contact')">Запишете се →</button>
@@ -888,7 +896,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       </ul>
     </div>
   </div>
-  <section class="section rv" style="padding:60px 80px">
+  <section class="section rv">
     <div class="eyebrow">Обща информация</div>
     <div class="sec-title">Формат на курсовете</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px">
@@ -898,9 +906,9 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <div style="font-size:13px;color:var(--muted);font-weight:500">Едновременно — всяко занятие</div>
       </div>
       <div style="background:var(--gl);border-radius:var(--r);padding:20px;border:1px solid var(--gm);text-align:center">
-        <div style="font-size:24px;margin-bottom:8px">📅</div>
-        <div style="font-weight:800;color:var(--dark);margin-bottom:4px">Септември – Юни</div>
-        <div style="font-size:13px;color:var(--muted);font-weight:500">Начало: последните 10 дни на септември</div>
+        <div style="font-size:24px;margin-bottom:8px">🎥</div>
+        <div style="font-weight:800;color:var(--dark);margin-bottom:4px">Видеозаписи</div>
+        <div style="font-size:13px;color:var(--muted);font-weight:500">Предоставяме запис от всяко занятие</div>
       </div>
       <div style="background:var(--gl);border-radius:var(--r);padding:20px;border:1px solid var(--gm);text-align:center">
         <div style="font-size:24px;margin-bottom:8px">👨‍🏫</div>
@@ -2315,7 +2323,6 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
       </div>
     </div>
-  </div>
 
   </section>
   <footer id="zapisvane-footer"></footer>
@@ -2538,8 +2545,8 @@ function navigate(page, fromPopState) {
   var topPage = page.split('-')[0];
   var navLink = document.querySelector('[data-page="' + topPage + '"]');
   if(navLink) navLink.classList.add('active');
-  window.scrollTo(0, 0);
   currentPage = page;
+  window.scrollTo(0, 0);
   if(page === 'prog-info') fixProgInfoHero();
   revealElements();
   // Push to browser history (but not when called from popstate)
