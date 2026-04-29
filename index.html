@@ -73,6 +73,11 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
   .hp .n{font-size:16px}
   .hp .l{font-size:11px}
   .hp-label{font-size:10px}
+  .stats-bar{grid-template-columns:1fr 1fr 1fr;padding:20px 16px;gap:0}
+  .si-label{font-size:10px;padding-bottom:6px}
+  .si{padding:6px 8px;border-right:none;border-bottom:none}
+  .si .n{font-size:24px}
+  .si .l{font-size:11px}
 }
 .hamburger span{display:block;width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:all .3s}
 .mob-open .hamburger span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -187,6 +192,7 @@ h1.ht .acc{color:var(--green)}
 
 /* STATS */
 .stats-bar{background:var(--green);padding:44px 56px;display:grid;grid-template-columns:repeat(4,1fr)}
+.si-label{width:100%;text-align:center;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;padding-bottom:8px}
 .si{text-align:center;padding:8px 20px;border-right:1px solid rgba(255,255,255,.2)}
 .si:last-child{border-right:none}
 .si .n{font-family:'Baloo 2',cursive;font-size:40px;font-weight:800;color:#fff;line-height:1;margin-bottom:4px}
@@ -489,7 +495,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   </div>
   <div class="nav-links">
     <div class="nav-dropdown">
-      <span class="nav-link" data-page="programs" onclick="navigate('programs')" style="cursor:pointer">Програми ▾</span>
+      <span class="nav-link" data-page="programs" onclick="navigate('programs')" style="cursor:pointer">Курсове ▾</span>
       <div class="dropdown-menu">
         <span class="dropdown-item" onclick="navigate('prog-info')">💻 Състезателна информатика</span>
         <span class="dropdown-item" onclick="navigate('prog-math')">📐 Състезателна математика</span>
@@ -513,7 +519,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 </nav>
 
 <div class="mobile-menu" id="mobmenu">
-  <span class="mm-link" onclick="navigate('programs');toggleMenu()">Програми</span>
+  <span class="mm-link" onclick="navigate('programs');toggleMenu()">Курсове</span>
   <span class="mm-link" onclick="navigate('results');toggleMenu()">Резултати</span>
   <span class="mm-link" onclick="navigate('about');toggleMenu()">За школата</span>
   <span class="mm-link" onclick="navigate('zapisvane');toggleMenu()">Запиши се →</span>
@@ -533,7 +539,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <p class="hero-sub fu d2">Малки групи, бивши олимпийци като учители, доказана подготовка за НОМ, НОИ и елитни гимназии.</p>
       <div class="hero-btns fu d3">
         <button class="btn-p" onclick="navigate('contact')">Тествай потенциала си ✨</button>
-        <button class="btn-o" onclick="navigate('programs')">Разгледай програмите</button>
+        <button class="btn-o" onclick="navigate('programs')">Разгледай курсовете</button>
       </div>
       <!-- SUMMER BANNER -->
       <div class="fu d4" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1.5px solid #ffd54f;border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;cursor:pointer" onclick="navigate('zapisvane');setSummerCourse()">
@@ -600,10 +606,10 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
   <!-- STATS -->
   <div class="stats-bar rv">
-    <div class="si"><div class="n">8</div><div class="l">Макс. присъствено</div></div>
+    <div class="si-label">Резултати на нашите ученици от последните 5 години</div>
+    <div class="si"><div class="n">200+</div><div class="l">Класирани на НОМ и НОИ</div></div>
+    <div class="si"><div class="n">80+</div><div class="l">Призови места на НОМ и НОИ</div></div>
     <div class="si"><div class="n">100%</div><div class="l">Учители — бивши олимпийци</div></div>
-    <div class="si"><div class="n">НОМ·НОИ</div><div class="l">IMO · IOI · EGMO</div></div>
-    <div class="si"><div class="n">СМГ</div><div class="l">НПМГ · ТУЕС · Подготовка</div></div>
   </div>
 
   <!-- MID CTA -->
@@ -617,20 +623,20 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
   <!-- PROGRAMS PREVIEW -->
   <section class="section rv">
-    <div class="eyebrow">Програми</div>
+    <div class="eyebrow">Курсове</div>
     <div class="sec-title">Три пътя към върха</div>
     <p class="sec-sub">Подбрани за всяко ниво — от начинаещи до топ олимпийци.</p>
     <div class="prog-grid">
       <div class="prog-card pc-m rv" onclick="navigate('prog-math')">
         <div class="prog-ico">➕</div>
-        <h3>Програма по състезателна математика</h3>
+        <h3>Курс по състезателна математика</h3>
         <p>Алгебра, геометрия, комбинаторика. Систематична подготовка за НОМ.</p>
         <div class="prog-tags"><span class="ptag pg">5–12 клас</span><span class="ptag pg">НОМ · IMO</span></div>
         <div class="prog-link">Виж програмата</div>
       </div>
       <div class="prog-card pc-i rv" onclick="navigate('prog-info')">
         <div class="prog-ico">💻</div>
-        <h3>Програма по състезателна информатика</h3>
+        <h3>Курс по състезателна информатика</h3>
         <p>Алгоритми и C++. Подготовка за НОИ и международни олимпиади.</p>
         <div class="prog-tags"><span class="ptag pb">6–12 клас</span><span class="ptag pb">НОИ · IOI</span></div>
         <div class="prog-link">Виж програмата</div>
@@ -638,7 +644,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div class="prog-card pc-k rv" onclick="navigate('prog-kg')">
         <div style="position:absolute;top:14px;right:14px;background:#d4537e;color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.04em;z-index:2">🆕 Ново за 2026/27</div>
         <div class="prog-ico">🎯</div>
-        <h3>Програма кандидат-гимназист</h3>
+        <h3>Курс кандидат-гимназист</h3>
         <p>Интензивна подготовка за приемни изпити след 4. и 7. клас — за СМГ, НПМГ и ТУЕС.</p>
         <div class="prog-tags"><span class="ptag pp">4. клас</span><span class="ptag pp">7. клас</span><span class="ptag pp">СМГ · НПМГ · ТУЕС</span></div>
         <div class="prog-link">Виж програмата</div>
@@ -778,20 +784,20 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAMS PAGE
 ════════════════════════════════════ -->
 <div id="page-programs" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span>Програми</div>
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span>Курсове</div>
   <section class="section">
-    <div class="eyebrow rv">Програми</div>
+    <div class="eyebrow rv">Курсове</div>
     <div class="sec-title rv">Изберете своя път</div>
-    <p class="sec-sub rv">Специализирани програми с опитни учители.</p>
+    <p class="sec-sub rv">Специализирани курсове с опитни учители.</p>
     <div class="prog-grid">
       <div class="prog-card pc-m rv" onclick="navigate('prog-math')">
-        <div class="prog-ico">➕</div><h3>Програма по състезателна математика</h3>
+        <div class="prog-ico">➕</div><h3>Курс по състезателна математика</h3>
         <p>Алгебра, геометрия, комбинаторика. Систематична подготовка за НОМ от общински до национален кръг.</p>
         <div class="prog-tags"><span class="ptag pg">5–12 клас</span><span class="ptag pg">Нач. & Напр.</span><span class="ptag pg">НОМ · IMO</span></div>
         <div class="prog-link">Виж детайли</div>
       </div>
       <div class="prog-card pc-i rv" onclick="navigate('prog-info')">
-        <div class="prog-ico">💻</div><h3>Програма по състезателна информатика</h3>
+        <div class="prog-ico">💻</div><h3>Курс по състезателна информатика</h3>
         <p>Алгоритми, структури от данни и C++. Подготовка за НОИ и международни олимпиади.</p>
         <div class="prog-tags"><span class="ptag pb">6–12 клас</span><span class="ptag pb">C++</span><span class="ptag pb">НОИ · IOI</span></div>
         <div class="prog-link">Виж детайли</div>
@@ -799,7 +805,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div class="prog-card pc-k rv" onclick="navigate('prog-kg')">
         <div class="prog-ico">🎯</div>
         <div style="position:absolute;top:14px;right:14px;background:#d4537e;color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.04em;z-index:2">🆕 Ново за 2026/27</div>
-        <h3>Програма кандидат-гимназист</h3>
+        <h3>Курс кандидат-гимназист</h3>
         <p>Интензивна подготовка за приемни изпити след 4. и 7. клас. Пробни изпити и анализ на грешките.</p>
         <div class="prog-tags"><span class="ptag pp">4. клас</span><span class="ptag pp">7. клас</span><span class="ptag pp">СМГ · НПМГ · ТУЕС</span></div>
         <div class="prog-link">Виж детайли</div>
@@ -841,7 +847,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <div class="price-grid" style="align-items:stretch">
       <div class="pcard rv" style="display:flex;flex-direction:column"><div class="ptier">СТАНДАРТ</div><div class="pprice">По<small> договор</small></div><p class="pdesc">2 занятия седмично, онлайн платформа</p><ul class="pfeats"><li>2 занятия / седмица</li><li>Онлайн ресурси</li><li>Домашни задачи</li><li>Следене на прогреса</li></ul><div style="flex:1"></div><button class="pbtn pbtn-o" onclick="navigate('contact')">Запитване</button></div>
       <div class="pcard featured rv" style="display:flex;flex-direction:column"><div class="pcard-badge">⭐ НАЙ-ПОПУЛЯРЕН</div><div class="ptier">ИНТЕНЗИВЕН</div><div class="pprice">По<small> договор</small></div><p class="pdesc">3 занятия седмично, пробни изпити</p><ul class="pfeats"><li>3 занятия / седмица</li><li>Пробни изпити</li><li>Анализ на грешките</li><li>Приоритетна поддръжка</li><li>Всички ресурси</li></ul><div style="flex:1"></div><button class="pbtn pbtn-f" onclick="navigate('contact')">Резервирай място</button></div>
-      <div class="pcard rv" style="display:flex;flex-direction:column"><div class="ptier">ИНДИВИДУАЛЕН</div><div class="pprice">1:1<small> с учителя</small></div><p class="pdesc">Частни уроци, персонализирана програма</p><ul class="pfeats"><li>Частни уроци 1:1</li><li>Персонална програма</li><li>Гъвкав график</li><li>Всички ресурси</li></ul><div style="flex:1"></div><button class="pbtn pbtn-o" onclick="navigate('contact')">Свържете се</button></div>
+      <div class="pcard rv" style="display:flex;flex-direction:column"><div class="ptier">ИНДИВИДУАЛЕН</div><div class="pprice">1:1<small> с учителя</small></div><p class="pdesc">Частни уроци, персонализиран курс</p><ul class="pfeats"><li>Частни уроци 1:1</li><li>Персонален курс</li><li>Гъвкав график</li><li>Всички ресурси</li></ul><div style="flex:1"></div><button class="pbtn pbtn-o" onclick="navigate('contact')">Свържете се</button></div>
     </div>
   </section>
   <footer id="programs-footer"></footer>
@@ -851,11 +857,11 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAM DETAIL: MATEMATIKA
 ════════════════════════════════════ -->
 <div id="page-prog-math" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Програми</a><span class="sep">›</span>Програма по състезателна математика</div>
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Курс по състезателна математика</div>
   <div class="prog-detail-hero math">
     <div>
       <div class="prog-detail-badge" style="background:var(--gl);color:var(--gd)">➕ Математика</div>
-      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Програма по състезателна математика</h1>
+      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Курс по състезателна математика</h1>
       <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:24px">Системна подготовка за НОМ — от общински до национален кръг. Алгебра, геометрия, комбинаторика и теория на числата с бивши олимпийски медалисти.</p>
       <div class="prog-tags" style="margin-bottom:24px"><span class="ptag pg">5–12 клас</span><span class="ptag pg">Начинаещи</span><span class="ptag pg">Напреднали</span><span class="ptag pg">НОМ · IMO</span></div>
       <button class="btn-p" onclick="navigate('contact')">Запишете се →</button>
@@ -890,7 +896,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAM DETAIL: INFORMATIKA
 ════════════════════════════════════ -->
 <div id="page-prog-info" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Програми</a><span class="sep">›</span>Състезателна информатика</div>
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Състезателна информатика</div>
 
   <!-- HERO -->
   <div style="background:linear-gradient(135deg,#eef5fb,#daeaf8);padding:56px 56px 48px" id="prog-info-hero">
@@ -900,14 +906,14 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <p style="font-size:13px;font-weight:700;color:#185fa5;margin-bottom:14px">🏆 №1 школа по състезателна информатика в България по брой класирани ученици на НОИ през последните 5 години</p>
         <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Състезателна информатика<br><span style="font-size:32px;color:var(--muted)">за амбициозни ученици</span></h1>
         
-        <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:24px">Подготовка за НОИ и международни състезания чрез системна работа и внимателно изградена програма за всяка възраст.</p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:24px">Подготовка за НОИ и международни състезания чрез системна работа и внимателно изграден курс за всяка възраст.</p>
         <div style="background:#fff8e8;border:1.5px solid #ffd54f;border-radius:12px;padding:14px 18px;margin-bottom:24px;font-size:13px;font-weight:600;color:#7a5000">
           🎯 <strong>Подходящо за:</strong> ученици от 5. до 12. клас, които искат да се подготвят сериозно за НОИ — без значение дали са начинаещи или с опит.
         </div>
         <button class="btn-p" onclick="navigate('zapisvane')">Запишете се →</button>
       </div>
       <div style="background:#fff;border-radius:var(--rl);padding:32px;box-shadow:0 8px 32px rgba(55,138,221,.1);border:1px solid #c8dff2">
-        <h3 style="font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:var(--dark);margin-bottom:20px">Формат на програмата</h3>
+        <h3 style="font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:var(--dark);margin-bottom:20px">Формат на курса</h3>
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="display:flex;align-items:center;gap:12px"><div style="font-size:20px">📅</div><div><div style="font-size:13px;font-weight:800;color:var(--dark)">30 седмици</div><div style="font-size:12px;color:var(--muted)">15 септември – 15 юни</div></div></div>
           <div style="display:flex;align-items:center;gap:12px"><div style="font-size:20px">🔁</div><div><div style="font-size:13px;font-weight:800;color:var(--dark)">1 занятие седмично</div><div style="font-size:12px;color:var(--muted)">4 учебни часа</div></div></div>
@@ -957,7 +963,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
   <!-- КУРСОВЕ ПО КЛАСОВЕ -->
   <section class="section rv">
-    <div class="eyebrow rv">Програма по класове</div>
+    <div class="eyebrow rv">Разпределение по класове</div>
     <div class="sec-title rv">Курс за всеки клас</div>
     <p style="font-size:16px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:28px;max-width:620px" class="rv">Провеждаме курсове за всеки клас от 5. до 12. — всеки следва конспекта за НОИ за съответния клас. Влизаш в групата за твоя клас и учиш точно това, което ще ти трябва.</p>
     <div style="display:flex;flex-wrap:wrap;gap:10px" class="rv">
@@ -1070,7 +1076,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAM DETAIL: KANDIDAT-GIMNAZIST
 ════════════════════════════════════ -->
 <div id="page-prog-kg" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Програми</a><span class="sep">›</span>Кандидат-гимназист</div>
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Кандидат-гимназист</div>
   <div class="prog-detail-hero kg">
     <div>
       <div class="prog-detail-badge" style="background:#fce8f1;color:#993556">🎯 Кандидат-гимназист</div>
@@ -1094,7 +1100,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   <section class="section rv">
     <div class="eyebrow">Учебна програма</div>
     <div class="sec-title">Как се подготвяме</div>
-    <p class="sec-sub">Интензивна програма, адаптирана към изискванията на всяка гимназия.</p>
+    <p class="sec-sub">Интензивен курс, адаптиран към изискванията на всяка гимназия.</p>
     <div class="curriculum">
       <div class="curr-card rv"><h4>📐 Математика за СМГ/НПМГ</h4><ul><li>Числа и операции — задачи тип А</li><li>Алгебра и уравнения</li><li>Геометрия — лице, периметър, обем</li><li>Логически задачи и ребуси</li><li>Задачи от реални приемни изпити</li></ul></div>
       <div class="curr-card rv"><h4>📝 Задачи тип ДЗИ / ТУЕС</h4><ul><li>Пълни тестове в изпитни условия</li><li>Хронометриран разбор</li><li>Типови грешки и как да ги избегнем</li><li>Стратегия за разпределение на времето</li></ul></div>
@@ -1497,7 +1503,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   <section class="section">
     <div class="eyebrow rv">Контакти</div>
     <div class="sec-title rv">Свържете се с нас</div>
-    <p class="sec-sub rv">Готови сме да отговорим на всеки въпрос — за програмите, цените или как да started вашето дете.</p>
+    <p class="sec-sub rv">Готови сме да отговорим на всеки въпрос — за курсовете, цените или как да started вашето дете.</p>
     <div class="contact-grid">
       <div>
         <div class="contact-info">
@@ -1555,7 +1561,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   <section class="section">
     <div class="eyebrow rv">Записване</div>
     <div class="sec-title rv">Запишете се за 2025/2026</div>
-    <p class="sec-sub rv">Изберете програмата, която ви интересува, и попълнете съответната форма. Ще се свържем с вас до 24 часа.</p>
+    <p class="sec-sub rv">Изберете курса, който ви интересува, и попълнете съответната форма. Ще се свържем с вас до 24 часа.</p>
 
     <!-- INFO STRIP -->
     <div style="background:var(--bg2);border-radius:var(--rl);padding:28px 32px;border:1.5px solid var(--border);margin-bottom:48px" class="rv">
@@ -2251,7 +2257,7 @@ var footerHTML = '<div class="fg4">'
   + '<div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(106,191,60,.1);display:flex;align-items:center;gap:12px">'
   + '<span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em">С ПОДКРЕПАТА НА</span>'
   + '<img src="' + SAP_LOGO + '" style="height:24px;opacity:.6" alt="SAP"></div></div>'
-  + '<div class="fcol"><h4>Програми</h4>'
+  + '<div class="fcol"><h4>Курсове</h4>'
   + '<a onclick="navigate(\'prog-info\')">Състезателна информатика</a>'
   + '<a onclick="navigate(\'prog-math\')">Състезателна математика</a>'
   + '<a onclick="navigate(\'prog-kg\')">Кандидат-гимназист</a></div>'
