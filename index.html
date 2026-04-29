@@ -53,29 +53,16 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
 .nav-cta:hover{background:var(--gd);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 @media(max-width:768px){
-  html{overflow-x:hidden}
-  body{overflow-x:hidden;max-width:100vw;width:100vw}
-  *{max-width:100%;box-sizing:border-box}
-  nav{padding:0 16px;width:100%;box-sizing:border-box}
+  html,body{overflow-x:hidden}
+  nav{padding:0 16px;box-sizing:border-box}
   .nav-links{display:none}
   .nav-cta{display:none}
   .hamburger{display:flex}
-  .hero{
-    grid-template-columns:1fr !important;
-    padding:28px 20px 32px !important;
-    gap:20px;
-    width:100%;
-  }
+  .hero{grid-template-columns:1fr !important;padding:28px 20px 32px !important}
   .hero-right{display:none}
-  .hero-left{width:100%;max-width:100%}
   .hero-btns{flex-direction:column;gap:10px;margin-bottom:24px}
-  .hero-btns .btn-p,.hero-btns .btn-o{width:100%;text-align:center;box-sizing:border-box}
-  .hero-proof{gap:16px;flex-wrap:wrap}
+  .hero-btns .btn-p,.hero-btns .btn-o{width:100%;text-align:center}
   .hero-wrap{min-height:auto}
-  .ticker-wrap{overflow:hidden}
-  section,.section,.section-alt,.section-dark{padding:40px 20px !important}
-  .programs-grid,.cards-grid,[style*="grid-template-columns"]{grid-template-columns:1fr !important}
-  footer{padding:32px 20px}
 }
 .hamburger span{display:block;width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:all .3s}
 .mob-open .hamburger span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -2658,6 +2645,26 @@ function selectLinfoVariantPill(el, v) {
 
 var homeLink = document.querySelector('[data-page="home"]');
 if(homeLink) homeLink.classList.add('active');
+</script>
+
+<script>
+(function(){
+  if(window.innerWidth > 768) return;
+  var docW = document.documentElement.offsetWidth;
+  var all = document.querySelectorAll('*');
+  var offenders = [];
+  all.forEach(function(el){
+    if(el.offsetWidth > docW){
+      offenders.push(el.tagName + (el.id?'#'+el.id:'') + (el.className?' .'+el.className.toString().split(' ')[0]:'') + ' = ' + el.offsetWidth + 'px');
+    }
+  });
+  if(offenders.length){
+    var d = document.createElement('div');
+    d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:red;color:white;font-size:11px;z-index:9999;padding:8px;max-height:200px;overflow-y:auto';
+    d.innerHTML = '<b>OVERFLOW:</b><br>' + offenders.slice(0,10).join('<br>');
+    document.body.appendChild(d);
+  }
+})();
 </script>
 </body>
 </html>
