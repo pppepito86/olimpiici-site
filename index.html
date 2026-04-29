@@ -2681,25 +2681,5 @@ function selectLinfoVariantPill(el, v) {
 var homeLink = document.querySelector('[data-page="home"]');
 if(homeLink) homeLink.classList.add('active');
 </script>
-
-<script>
-(function(){
-  if(window.innerWidth > 768) return;
-  var docW = document.documentElement.offsetWidth;
-  var all = document.querySelectorAll('*');
-  var offenders = [];
-  all.forEach(function(el){
-    if(el.offsetWidth > docW){
-      offenders.push(el.tagName + (el.id?'#'+el.id:'') + (el.className?' .'+el.className.toString().split(' ')[0]:'') + ' = ' + el.offsetWidth + 'px');
-    }
-  });
-  if(offenders.length){
-    var d = document.createElement('div');
-    d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:red;color:white;font-size:11px;z-index:9999;padding:8px;max-height:200px;overflow-y:auto';
-    d.innerHTML = '<b>OVERFLOW:</b><br>' + offenders.slice(0,10).join('<br>');
-    document.body.appendChild(d);
-  }
-})();
-</script>
 </body>
 </html>
