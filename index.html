@@ -227,7 +227,7 @@ h1.ht .acc{color:var(--green)}
 .prog-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.07)}
 .prog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;border-radius:var(--rl) var(--rl) 0 0}
 .pc-m{background:var(--bg2);border-color:var(--border)}.pc-m::before{background:var(--green)}
-.pc-i{background:#eef5fb;border-color:#c8dff2}.pc-i::before{background:#378add}
+.pc-i{background:var(--bg2);border-color:var(--border)}.pc-i::before{background:var(--green)}
 .pc-k{background:#fbeef5;border-color:#f0c0d8}.pc-k::before{background:#d4537e}
 .prog-ico{font-size:38px;margin-bottom:14px}
 .prog-card h3{font-family:'Baloo 2',cursive;font-size:21px;font-weight:800;color:var(--dark);margin-bottom:8px}
@@ -269,8 +269,6 @@ h1.ht .acc{color:var(--green)}
 .teach-sub{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.05em;font-weight:600;margin-bottom:8px}
 .teach-achiev{font-size:13px;font-weight:700;color:#9acf70;margin-bottom:10px;line-height:1.4}
 .teach-badge{display:inline-block;background:rgba(106,191,60,.15);border:1px solid rgba(106,191,60,.3);color:#9acf70;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px}
-.teach-hover{position:absolute;inset:0;background:rgba(8,20,3,.93);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .25s}
-.teach-card:hover .teach-hover{opacity:1}
 .teach-quote{font-size:13px;color:rgba(255,255,255,.85);font-style:italic;line-height:1.75;text-align:center}
 .teach-quote::before{content:'"';font-size:30px;color:var(--green);line-height:0;vertical-align:-10px;margin-right:4px;font-family:'Baloo 2',cursive}
 
@@ -515,7 +513,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div class="dropdown-menu">
         <span class="dropdown-item" onclick="navigate('prog-math')">📐 Състезателна математика</span>
         <span class="dropdown-item" onclick="navigate('prog-info')">💻 Състезателна информатика</span>
-        <span class="dropdown-item" onclick="navigate('prog-kg')">🎯 Кандидатстване след 4. и 7. клас</span>
+        <span class="dropdown-item" onclick="navigate('prog-kg')">🎯 Кандидатстване след 4. клас и след 7. клас</span>
       </div>
     </div>
     <span class="nav-link" onclick="navigate('results')" data-page="results">Резултати</span>
@@ -556,25 +554,15 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       <div class="hero-btns fu d3">
         <button class="btn-o" onclick="navigate('programs')">Избери курс</button>
       </div>
-      <!-- SUMMER BANNER -->
-      <div class="fu d4" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1.5px solid #ffd54f;border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;cursor:pointer" onclick="navigate('zapisvane');setSummerCourse()">
-        <div style="font-size:28px;flex-shrink:0">☀️</div>
+      <!-- ANNUAL BANNER -->
+      <div class="fu d4" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1.5px solid #ffd54f;border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;cursor:pointer" onclick="navigate('zapisvane')">
+        <div style="font-size:28px;flex-shrink:0">📅</div>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:2px">Летни курсове 2026 — Записването е отворено!</div>
-          <div style="font-size:12px;color:#bf6000;font-weight:500">Интензивни и седмични курсове по математика и информатика</div>
+          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:2px">Годишни курсове 2026/2027 — Записването е отворено!</div>
+          <div style="font-size:12px;color:#bf6000;font-weight:500">Състезателна математика и информатика<br>Подготовка за кандидатстване след 4. и 7. клас</div>
         </div>
+      </div>
 
-      </div>
-      <div class="hero-proof fu d4">
-        <div class="hp-label">Резултати на нашите ученици от последните 5 години</div>
-        <div class="hp-cards">
-          <div class="hp"><div class="n">200+</div><div class="l">Класирани на<br>НОМ и НОИ</div></div>
-          <div class="hp-div"></div>
-          <div class="hp"><div class="n">80+</div><div class="l">Призови места на<br>НОМ и НОИ</div></div>
-          <div class="hp-div"></div>
-          <div class="hp"><div class="n">100%</div><div class="l">Учители —<br>бивши олимпийци</div></div>
-        </div>
-      </div>
     </div>
     <div class="hero-right">
       <div class="hcards">
@@ -594,97 +582,85 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   </div>
   </div><!-- end hero-wrap -->
 
-  <!-- TICKER -->
-  <div class="ticker-wrap">
-    <div class="ticker-inner">
-      <div class="ti" style="color:#e65100;font-weight:800">☀️ Летни курсове 2026 — Записването е отворено! 1 юли · Ограничени места</div>
-      <div class="ti">🥇 Александър Гатев <span class="sep">·</span> Злато IOI 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион BOI 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион EJOI 2023</div>
-      <div class="ti">🥇 Мартин Чавдаров <span class="sep">·</span> Злато JBOI 2025, Абсолютно 1-во място</div>
-      <div class="ti">🥇 Кирил Зулямски <span class="sep">·</span> Злато JBOI 2025, Абсолютно 3-то място</div>
-      <div class="ti">🏆 Борис Михов <span class="sep">·</span> Абсолютен шампион НОИ 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион НОИ 2026</div>
-      <div class="ti">🥇 Борис Михов <span class="sep">·</span> Злато BOI 2024</div>
-      <div class="ti">🥇 Андрей Стефанов <span class="sep">·</span> Злато BOI 2024</div>
-      <div class="ti">🥇 Александър Гатев <span class="sep">·</span> Злато IOI 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион BOI 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион EJOI 2023</div>
-      <div class="ti">🥇 Мартин Чавдаров <span class="sep">·</span> Злато JBOI 2025, Абсолютно 1-во място</div>
-      <div class="ti">🥇 Кирил Зулямски <span class="sep">·</span> Злато JBOI 2025, Абсолютно 3-то място</div>
-      <div class="ti">🏆 Борис Михов <span class="sep">·</span> Абсолютен шампион НОИ 2025</div>
-      <div class="ti">🏆 Андрей Стефанов <span class="sep">·</span> Абсолютен шампион НОИ 2026</div>
-      <div class="ti">🥇 Борис Михов <span class="sep">·</span> Злато BOI 2024</div>
-      <div class="ti">🥇 Андрей Стефанов <span class="sep">·</span> Злато BOI 2024</div>
-    </div>
-  </div>
 
-  <!-- STATS -->
-  <div class="stats-bar rv">
-    <div class="si-label">Резултати на нашите ученици от последните 5 години</div>
-    <div class="si"><div class="n">200+</div><div class="l">Класирани на НОМ и НОИ</div></div>
-    <div class="si"><div class="n">80+</div><div class="l">Призови места на НОМ и НОИ</div></div>
-    <div class="si"><div class="n">100%</div><div class="l">Учители — бивши олимпийци</div></div>
-  </div>
-
-  <!-- MID CTA -->
-  <div class="mid-cta rv" style="flex-wrap:wrap;gap:16px">
-    <p>☀️ <strong>Летни курсове 2026</strong> стартират от <span>1 юли</span> — местата са ограничени</p>
-    <div class="mid-cta-r">
-      <span class="mid-cta-sub">Интензивен (750 лв.) или седмичен (400 лв.)</span>
-      <button class="btn-p" onclick="navigate('zapisvane');setSummerCourse()">Запиши се за лятото →</button>
-    </div>
-  </div>
-
-  <!-- PROGRAMS PREVIEW -->
   <section class="section rv">
     <div class="eyebrow">Курсове</div>
-    <div class="sec-title">Избери правилния курс според целта на ученика</div>
-    <p class="sec-sub">Подбрани за всяко ниво — от начинаещи до топ олимпийци.</p>
+    <div class="sec-title">Избери правилния курс</div>
+    <p class="sec-sub">Според целта на ученика — от първи стъпки до топ олимпиади.</p>
     <div class="prog-grid">
       <div class="prog-card pc-m rv" onclick="navigate('prog-math')">
         <div class="prog-ico">➕</div>
         <h3>Курсове по състезателна математика</h3>
-        <p>Подготовка за НОМ и IMO.<br>От първи задачи до призови места.<br><span style="color:var(--green);font-weight:700">✓ Силни резултати на състезания</span></p>
-        <div class="prog-tags"><span class="ptag pg">5–12 клас</span><span class="ptag pg">НОМ · IMO</span></div>
-        <div class="prog-link">Виж курса</div>
+        <p>От първи задачи до призови места.<br>Системно изграждане на мислене и техника.<br><span style="color:var(--green);font-weight:700">✓ Силни резултати на състезания</span></p>
+        <div class="prog-tags"><span class="ptag pg">3–12 клас</span><span class="ptag pg">НОМ · IMO</span></div>
+        <div class="prog-link">Разгледай курса</div>
       </div>
       <div class="prog-card pc-i rv" onclick="navigate('prog-info')">
         <div class="prog-ico">💻</div>
         <h3>Курсове по състезателна информатика</h3>
-        <p>Алгоритми и C++.<br>Подготовка за НОИ и IOI.<br><span style="color:#378add;font-weight:700">✓ Реални умения и алгоритмично мислене</span></p>
+        <p>Надграждане до състезателно ниво по информатика.<br>Постепенно изграждане на алгоритмично мислене.<br><span style="color:var(--green);font-weight:700">✓ Реални умения и състезателни резултати</span></p>
         <div class="prog-tags"><span class="ptag pb">6–12 клас</span><span class="ptag pb">НОИ · IOI</span></div>
-        <div class="prog-link">Виж курса</div>
+        <div class="prog-link">Разгледай курса</div>
       </div>
       <div class="prog-card pc-k rv" onclick="navigate('prog-kg')">
         <div style="position:absolute;top:14px;right:14px;background:#d4537e;color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.04em;z-index:2">🆕 Ново за 2026/27</div>
         <div class="prog-ico">🎯</div>
         <h3>Курсове за кандидатстване след 4. и 7. клас</h3>
-        <p>Подготовка за изпитите в СМГ, НПМГ и ТУЕС.<br><span style="color:#d4537e;font-weight:700">✓ Увереност и висок резултат на изпита</span></p>
+        <p>Подготовка за изпити в СМГ, НПМГ и ТУЕС.<br>Задачи и формат от реалния изпит.<br><span style="color:#d4537e;font-weight:700">✓ Спокойствие и висок резултат на изпита</span></p>
         <div class="prog-tags"><span class="ptag pp">4. клас</span><span class="ptag pp">7. клас</span><span class="ptag pp">СМГ · НПМГ · ТУЕС</span></div>
-        <div class="prog-link">Виж курса</div>
+        <div class="prog-link">Разгледай курса</div>
       </div>
 
     </div>
   </section>
 
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <div class="ti">🥇 Александър Гатев — злато IOI 2025</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион EJOI 2023</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион BOI 2025</div>
+      <div class="ti">🏆 Мартин Чавдаров — абсолютен шампион JBOI 2025</div>
+      <div class="ti">🥇 Кирил Зулямски — злато JBOI 2025</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион НОИ 2026</div>
+      <div class="ti">🏆 Борис Михов — абсолютен шампион НОИ 2025</div>
+      <div class="ti">👨‍💻 Участници в IOI всяка година</div>
+      <div class="ti">🥇 Александър Гатев — злато IOI 2025</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион EJOI 2023</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион BOI 2025</div>
+      <div class="ti">🏆 Мартин Чавдаров — абсолютен шампион JBOI 2025</div>
+      <div class="ti">🥇 Кирил Зулямски — злато JBOI 2025</div>
+      <div class="ti">🏆 Андрей Стефанов — абсолютен шампион НОИ 2026</div>
+      <div class="ti">🏆 Борис Михов — абсолютен шампион НОИ 2025</div>
+      <div class="ti">👨‍💻 Участници в IOI всяка година</div>
+    </div>
+  </div>
+
+    <!-- STATS -->
+  <div class="stats-bar rv">
+    <div class="si-label" style="text-transform:none;font-size:13px">Резултати от НОМ и НОИ<br>за последните 5 години</div>
+    <div class="si"><div class="n">200+</div><div class="l">Класирани за национален кръг</div></div>
+    <div class="si"><div class="n">50+</div><div class="l">Класирания в топ 3</div></div>
+    <div class="si"><div class="n">100%</div><div class="l">Преподаватели — бивши олимпийци</div></div>
+  </div>
+
   <!-- WHY US -->
   <section class="section section-alt rv">
     <div class="eyebrow">Защо Олимпийци?</div>
-    <div class="sec-title">Различни по същество</div>
-    <p class="sec-sub">Не просто школа — общност от хора, обичащи математиката.</p>
+    <div class="sec-title">Как учим учениците да успяват</div>
+    <p class="sec-sub">Подготовка, която изгражда мислене и води до силни резултати.</p>
     <div class="why-grid">
-      <div class="why-card rv"><div class="why-ico">👨‍🏫</div><div><h4>Учители — бивши олимпийци</h4><p>Знаят пътя от лично преживяване. Обясняват как се мисли, не само как се смята.</p></div></div>
-      <div class="why-card rv"><div class="why-ico">📊</div><div><h4>Присъствено до 8, онлайн без ограничение</h4><p>Присъствените групи са малки за пълно внимание. Онлайн платформата е достъпна за всички.</p></div></div>
-      <div class="why-card rv"><div class="why-ico">🎮</div><div><h4>Реални олимпийски задачи</h4><p>Никакво наизустяване — само разбиране. Мини-турнири и предизвикателства.</p></div></div>
-      <div class="why-card rv"><div class="why-ico">📱</div><div><h4>Онлайн платформа за родители</h4><p>Домашни, ресурси и прогрес на детето — на едно място в реално време.</p></div></div>
+      <div class="why-card rv"><div class="why-ico">👨‍🏫</div><div><h4>Преподаватели с реален състезателен опит</h4><p>Състезателен опит на национално и международно ниво.</p></div></div>
+      <div class="why-card rv"><div class="why-ico">🧠</div><div><h4>Мислене, не наизустяване</h4><p>Показваме начина на мислене зад задачите.</p></div></div>
+      <div class="why-card rv"><div class="why-ico">🏆</div><div><h4>Предизвикателства, не просто уроци</h4><p>Реални състезателни задачи и практика всяка седмица.</p></div></div>
+      <div class="why-card rv"><div class="why-ico">🎥</div><div><h4>Учене със собствено темпо</h4><p>Видео записи за преговор и самостоятелна работа.</p></div></div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
   <section class="section rv">
     <div class="eyebrow">Отзиви</div>
-    <div class="sec-title">Казват го самите те</div>
+    <div class="sec-title">Какво казват учениците</div>
     <div class="chat-intro rv"><span style="font-size:20px">💬</span><span>Реални съобщения от родители и ученици</span></div>
     <div class="chat-feed">
       <div class="chat-row rv">
@@ -714,19 +690,25 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
   <!-- TEACHERS PREVIEW -->
   <section class="section section-dark rv">
     <div class="eyebrow wh">Учители</div>
-    <div class="sec-title wh">Рок звезди на математиката</div>
-    <p class="sec-sub wh">Задръж мишката за любимото им уравнение.</p>
+    <div class="sec-title wh">Кой стои зад резултатите</div>
     <div class="teach-grid-home">
-      <div class="teach-card rv"><div class="teach-av" style="background:#6abf3c;padding:0;overflow:hidden"><img src="vasil.png" alt="Васил Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Васил Василев</div><div class="teach-sub">МАТЕМАТИКА · РЪКОВОДИТЕЛ</div><div class="teach-achiev">📐 EUCYS'2014 · Intel ISEF'2015</div><span class="teach-badge">ФМИ на СУ</span><div class="teach-hover"><div class="teach-quote">12+ години педагогически опит. Ръководител на школата по математика 5.–12. клас.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#534ab7;padding:0;overflow:hidden"><img src="ivanov.jpeg" alt="Александър Иванов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Александър Иванов</div><div class="teach-sub">МАТЕМАТИКА</div><div class="teach-achiev">🥇🥇 Двукратен медалист МОМ</div><span class="teach-badge">БАН · Национална комисия</span><div class="teach-hover"><div class="teach-quote">Автор на над 300 задачи за национални и международни състезания.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#2d7dd2;padding:0;overflow:hidden"><img src="yoan.jpg" alt="Йоан Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Йоан Василев</div><div class="teach-sub">МАТЕМАТИКА</div><div class="teach-achiev">📐 Ръководител 3.–4. клас</div><span class="teach-badge">ППМГ Бургас · ФМИ</span><div class="teach-hover"><div class="teach-quote">4+ години опит с ученици от началния курс. Класиран за НОМ национален кръг.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#1d9e75;padding:0;overflow:hidden"><img src="angel.webp" alt="Ангел Райчев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Ангел Райчев</div><div class="teach-sub">МАТЕМАТИКА</div><div class="teach-achiev">🥇 БОМ · Romanian Masters</div><span class="teach-badge">Stanford University</span><div class="teach-hover"><div class="teach-quote">Медалист от БОМ и RMM. Участник в RSI на MIT. Студент в Stanford.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#c0392b;padding:0;overflow:hidden"><img src="martin.jpg" alt="Мартин Димитров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Мартин Димитров</div><div class="teach-sub">МАТЕМАТИКА И ИНФОРМАТИКА</div><div class="teach-achiev">🎓 Harvard University</div><span class="teach-badge">Бивш ученик на школата</span><div class="teach-hover"><div class="teach-quote">Класиран на националните кръгове по математика и информатика. Завършил Harvard.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#8e44ad;padding:0;overflow:hidden"><img src="petko.jpg" alt="Петко Лазаров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петко Лазаров</div><div class="teach-sub">МАТЕМАТИКА</div><div class="teach-achiev">🥇 Отбор на България за МОМ 2025</div><span class="teach-badge">СУ · Национална комисия</span><div class="teach-hover"><div class="teach-quote">Бивш ученик на школата. Участник в МОМ 2025. Студент в СУ.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#378add;padding:0;overflow:hidden"><img src="petar.png" alt="Петър Петров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петър Петров</div><div class="teach-sub">ИНФОРМАТИКА · РЪКОВОДИТЕЛ</div><div class="teach-achiev">💻 Награда „Джон Атанасов"</div><span class="teach-badge">БАН · SAP · Ocado</span><div class="teach-hover"><div class="teach-quote">Ръководител на школите по информатика. 15+ години опит. Създател на системата за ДЗИ по информатика.</div></div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#16a085;padding:0;overflow:hidden"><img src="marin.jpeg" alt="Марин Шаламанов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Марин Шаламанов</div><div class="teach-sub">ИНФОРМАТИКА</div><div class="teach-achiev">🏆 Intel ISEF'2015 · „Джон Атанасов"</div><span class="teach-badge">Съосновател · Google</span><div class="teach-hover"><div class="teach-quote">Съосновател на школата. Програмист в Google. Бивш участник в националните отбори по МОМ и МОИ.</div></div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#6abf3c;padding:0;overflow:hidden"><img src="vasil.png" alt="Васил Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Васил Василев</div><div class="teach-achiev">🏆 Участник в Intel ISEF</div><div class="teach-sub">Ръководител по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#534ab7;padding:0;overflow:hidden"><img src="ivanov.jpeg" alt="Александър Иванов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Александър Иванов</div><div class="teach-achiev">🥇 Двукратен медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#2d7dd2;padding:0;overflow:hidden"><img src="yoan.jpg" alt="Йоан Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Йоан Василев</div><div class="teach-achiev">📐 Класиран на национален кръг на НОМ</div><div class="teach-sub">Ръководител по математика 3.–4. клас</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#1d9e75;padding:0;overflow:hidden"><img src="angel.webp" alt="Ангел Райчев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Ангел Райчев</div><div class="teach-achiev">🥇 Медалист от БОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#c0392b;padding:0;overflow:hidden"><img src="martin.jpg" alt="Мартин Димитров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Мартин Димитров</div><div class="teach-achiev">🎓 Harvard University</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#8e44ad;padding:0;overflow:hidden"><img src="petko.jpg" alt="Петко Лазаров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петко Лазаров</div><div class="teach-achiev">🥇 Медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#378add;padding:0;overflow:hidden"><img src="petar.png" alt="Петър Петров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петър Петров</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Ръководител по информатика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#16a085;padding:0;overflow:hidden"><img src="marin.jpeg" alt="Марин Шаламанов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Марин Шаламанов</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Преподавател по информатика</div></div>
     </div>
   </section>
+
+  <!-- MID CTA -->
+  <div style="background:#0f2206;padding:18px 56px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="font-size:15px;font-weight:700;color:#fff">📅 Годишни курсове 2026/2027 — <span style="color:var(--green)">записванията са отворени</span></div>
+    <div style="font-size:13px;color:rgba(255,255,255,.55);font-weight:500">Състезателна математика и информатика • Подготовка за кандидатстване след 4. и 7. клас</div>
+    <button class="btn-p" onclick="navigate('zapisvane')" style="white-space:nowrap;flex-shrink:0">Запиши се сега →</button>
+  </div>
 
   <!-- VALUE MAGNET -->
   <section class="section section-alt rv">
@@ -1250,11 +1232,11 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
      PROGRAM DETAIL: KANDIDAT-GIMNAZIST
 ════════════════════════════════════ -->
 <div id="page-prog-kg" class="page">
-  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Кандидатстване след 4. и 7. клас</div>
+  <div class="breadcrumb"><a onclick="navigate('home')">Начало</a><span class="sep">›</span><a onclick="navigate('programs')">Курсове</a><span class="sep">›</span>Кандидатстване след 4. клас и след 7. клас</div>
   <div class="prog-detail-hero kg">
     <div>
-      <div class="prog-detail-badge" style="background:#fce8f1;color:#993556">🎯 Кандидатстване след 4. и 7. клас</div>
-      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Кандидатстване след 4. и 7. клас</h1>
+      <div class="prog-detail-badge" style="background:#fce8f1;color:#993556">🎯 Кандидатстване след 4. клас и след 7. клас</div>
+      <h1 style="font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.1">Кандидатстване след 4. клас и след 7. клас</h1>
       <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:500;margin-bottom:24px">Интензивна подготовка за прием в СМГ, НПМГ, ТУЕС и другите елитни гимназии. Пробни изпити, разбор на грешките и гарантирана готовност за изпитния ден.</p>
       <div class="prog-tags" style="margin-bottom:24px"><span class="ptag pp">7 клас</span><span class="ptag pp">Интензивен</span><span class="ptag pp">СМГ · НПМГ · ТУЕС</span></div>
       <button class="btn-p" onclick="navigate('zapisvane')">Запишете се →</button>
@@ -1355,7 +1337,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <div>
           <div class="tfc-name">Александър Иванов</div>
           <div class="tfc-title">МАТЕМАТИКА · БАН · НАЦИОНАЛНА КОМИСИЯ ПО МАТЕМАТИКА</div>
-          <div class="tfc-medal">🥇🥇 Двукратен медалист от МОМ · Автор на над 300 състезателни задачи</div>
+          <div class="tfc-medal">🥇 Двукратен медалист от МОМ · Автор на над 300 състезателни задачи</div>
           <p class="tfc-bio">Едно от най-разпознаваемите имена в българската състезателна математика. Като част от Националната комисия по математика има ключова роля в олимпиадната подготовка — автор или съавтор на над 300 задачи за Есенните, Зимните и Пролетните математически състезания и НОМ. Като двукратен медалист от МОМ е бил дългогодишен лектор в подготовката на националните отбори на България и е водил лекции и на националния отбор на САЩ.</p>
           <div class="tfc-quote">В най-трудните задачи най-важно е да видиш правилната идея, а всички идеи са класически.</div>
         </div>
@@ -1518,7 +1500,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     </div>
   </section>
   <section class="section rv" style="background:#0f2206">
-    <div class="eyebrow wh">Кандидатстване след 4. и 7. класи</div>
+    <div class="eyebrow wh">Кандидатстване след 4. клас и след 7. класи</div>
     <div class="sec-title wh">Прием в топ гимназии</div>
     <p class="sec-sub wh">Всеки ученик, преминал нашия курс за кандидатстване след 4. и 7. класи, е приет в желаната гимназия.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
@@ -1816,7 +1798,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
           <div class="pills">
             <span class="pill" onclick="this.classList.toggle('on')">➕ Състезателна математика</span>
             <span class="pill" onclick="this.classList.toggle('on')">💻 Състезателна информатика</span>
-            <span class="pill" onclick="this.classList.toggle('on')">🎯 Кандидатстване след 4. и 7. клас</span>
+            <span class="pill" onclick="this.classList.toggle('on')">🎯 Кандидатстване след 4. клас и след 7. клас</span>
           </div>
         </div>
         <div class="fgrp"><label>СЪОБЩЕНИЕ (незадължително)</label><input type="text" placeholder="Въпроси, бележки..."></div>
@@ -1863,7 +1845,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         <div class="course-card" onclick="selectSubject('kg',this)"
           style="border:2px solid #f0c0d8;border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;background:#fbeef5;transition:all .2s">
           <div style="font-size:36px;margin-bottom:10px">🎯</div>
-          <div style="font-size:15px;font-weight:800;color:var(--dark)">Кандидатстване след 4. и 7. клас</div>
+          <div style="font-size:15px;font-weight:800;color:var(--dark)">Кандидатстване след 4. клас и след 7. клас</div>
         </div>
 
       </div>
@@ -2106,7 +2088,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <div class="zapisvane-grid">
       <div>
         <div style="background:#fbeef5;border-radius:var(--rl);padding:28px;border:1.5px solid #f0c0d8;margin-bottom:24px">
-          <div style="font-size:13px;font-weight:800;color:#993556;margin-bottom:12px">🎯 Кандидатстване след 4. и 7. клас 2026/2027</div>
+          <div style="font-size:13px;font-weight:800;color:#993556;margin-bottom:12px">🎯 Кандидатстване след 4. клас и след 7. клас 2026/2027</div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <div style="font-size:13px;color:#993556;font-weight:500">📅 <strong>15 септември – 15 юни</strong></div>
             <div style="font-size:13px;color:#993556;font-weight:500">🏫 <strong>СМГ, НПМГ, ТУЕС</strong> и други</div>
@@ -2120,7 +2102,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         </div>
       </div>
       <div class="rform">
-        <div class="form-title">Записване — Кандидатстване след 4. и 7. клас</div>
+        <div class="form-title">Записване — Кандидатстване след 4. клас и след 7. клас</div>
         <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="kg-student" placeholder="Три имена"></div>
         <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="kg-school-name" placeholder="Настоящо училище"></div>
         <div class="fgrid">
@@ -2301,7 +2283,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     <div class="zapisvane-grid">
       <div>
         <div style="background:#fff8e1;border-radius:var(--rl);padding:28px;border:1.5px solid #ffd54f;margin-bottom:24px">
-          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:12px">☀️ Летен курс — Кандидатстване след 4. и 7. клас</div>
+          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:12px">☀️ Летен курс — Кандидатстване след 4. клас и след 7. клас</div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <div style="font-size:13px;color:#bf6000;font-weight:500">📅 <strong>Лято 2026</strong></div>
             <div style="font-size:13px;color:#bf6000;font-weight:500">⚡ Интензивен или седмичен формат</div>
@@ -2315,7 +2297,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
         </div>
       </div>
       <div class="rform">
-        <div class="form-title">Записване — Летен курс Кандидатстване след 4. и 7. клас</div>
+        <div class="form-title">Записване — Летен курс Кандидатстване след 4. клас и след 7. клас</div>
         <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="lkg-student" placeholder="Три имена"></div>
         <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="lkg-school-name" placeholder="Настоящо училище"></div>
         <div class="fgrid">
@@ -2536,7 +2518,7 @@ var footerHTML = '<div class="fg4">'
   + '<div class="fcol"><h4>Курсове</h4>'
   + '<a onclick="navigate(\'prog-info\')">Състезателна информатика</a>'
   + '<a onclick="navigate(\'prog-math\')">Състезателна математика</a>'
-  + '<a onclick="navigate(\'prog-kg\')">Кандидатстване след 4. и 7. клас</a></div>'
+  + '<a onclick="navigate(\'prog-kg\')">Кандидатстване след 4. клас и след 7. клас</a></div>'
   + '<div class="fcol"><h4>За школата</h4>'
   + '<a onclick="navigate(\'teachers\')">Учители</a>'
   + '<a onclick="navigate(\'howwelearn\')">Как учим</a>'
