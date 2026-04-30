@@ -126,6 +126,8 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
   #about-grid{grid-template-columns:1fr !important}
   #prog-info-grid{grid-template-columns:1fr !important}
   #prog-info-hero{padding:36px 24px 32px !important}
+  #page-prog-info [style*="repeat(4,1fr)"]{grid-template-columns:1fr 1fr !important;padding:24px !important}
+  #page-prog-info [style*="repeat(3,1fr)"]{grid-template-columns:1fr !important}
 }
 .section-alt{background:var(--bg2)}
 .section-dark{background:var(--d2)}
@@ -762,43 +764,6 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     </div>
   </section>
 
-  <!-- SCHEDULE -->
-  <section class="section section-alt rv">
-    <div class="eyebrow">Разписание</div>
-    <div class="sec-title">Гъвкави часове за всяко семейство</div>
-    <p class="sec-sub">Следобед или уикенд — намираме час, удобен за вас.</p>
-    <div class="sched-tabs" id="schedTabs">
-      <div class="stab active" onclick="showDay(0,this)">Понеделник</div>
-      <div class="stab" onclick="showDay(1,this)">Вторник</div>
-      <div class="stab" onclick="showDay(2,this)">Сряда</div>
-      <div class="stab" onclick="showDay(3,this)">Четвъртък</div>
-      <div class="stab" onclick="showDay(4,this)">Събота</div>
-    </div>
-    <div class="sched-grid rv">
-      <div class="day-col active" data-day="0"><div class="day-head">ПОН</div><div class="slot sl-m">Математика начинаещи<br><strong>16:00–17:30</strong></div><div class="slot sl-i">Информатика напреднали<br><strong>18:00–19:30</strong></div></div>
-      <div class="day-col" data-day="1"><div class="day-head">ВТ</div><div class="slot sl-e">Почивен</div><div class="slot sl-m">Математика напреднали<br><strong>17:30–19:00</strong></div></div>
-      <div class="day-col" data-day="2"><div class="day-head">СР</div><div class="slot sl-i">Информатика начинаещи<br><strong>16:00–17:30</strong></div><div class="slot sl-k">Кандидатстване<br><strong>18:00–19:30</strong></div></div>
-      <div class="day-col" data-day="3"><div class="day-head">ЧЕТ</div><div class="slot sl-m">Математика начинаещи<br><strong>16:00–17:30</strong></div><div class="slot sl-e">Почивен</div></div>
-      <div class="day-col" data-day="4"><div class="day-head">СЪБ</div><div class="slot sl-k">Интензивен кандидатстване<br><strong>10:00–12:00</strong></div><div class="slot sl-i">Информатика напреднали<br><strong>13:00–14:30</strong></div></div>
-    </div>
-    <div class="sched-legend rv">
-      <div class="leg"><div class="leg-dot" style="background:var(--gl)"></div><span style="color:var(--gd)">Математика</span></div>
-      <div class="leg"><div class="leg-dot" style="background:#daeaf8"></div><span style="color:#185fa5">Информатика</span></div>
-      <div class="leg"><div class="leg-dot" style="background:#fce8f1"></div><span style="color:#993556">Кандидатстване</span></div>
-    </div>
-  </section>
-
-  <!-- PRICES -->
-  <section class="section rv">
-    <div class="eyebrow">Цени</div>
-    <div class="sec-title">Прозрачно ценообразуване</div>
-    <p class="sec-sub">Без скрити такси. Свържете се с нас за точни цени и наличност.</p>
-    <div class="price-grid" style="align-items:stretch">
-      <div class="pcard rv" style="display:flex;flex-direction:column"><div class="ptier">СТАНДАРТ</div><div class="pprice">По<small> договор</small></div><p class="pdesc">2 занятия седмично, онлайн платформа</p><ul class="pfeats"><li>2 занятия / седмица</li><li>Онлайн ресурси</li><li>Домашни задачи</li><li>Следене на прогреса</li></ul><div style="flex:1"></div><button class="pbtn pbtn-o" onclick="navigate('contact')">Запитване</button></div>
-      <div class="pcard featured rv" style="display:flex;flex-direction:column"><div class="pcard-badge">⭐ НАЙ-ПОПУЛЯРЕН</div><div class="ptier">ИНТЕНЗИВЕН</div><div class="pprice">По<small> договор</small></div><p class="pdesc">3 занятия седмично, пробни изпити</p><ul class="pfeats"><li>3 занятия / седмица</li><li>Пробни изпити</li><li>Анализ на грешките</li><li>Приоритетна поддръжка</li><li>Всички ресурси</li></ul><div style="flex:1"></div><button class="pbtn pbtn-f" onclick="navigate('contact')">Резервирай място</button></div>
-      <div class="pcard rv" style="display:flex;flex-direction:column"><div class="ptier">ИНДИВИДУАЛЕН</div><div class="pprice">1:1<small> с учителя</small></div><p class="pdesc">Частни уроци, персонализиран курс</p><ul class="pfeats"><li>Частни уроци 1:1</li><li>Персонален курс</li><li>Гъвкав график</li><li>Всички ресурси</li></ul><div style="flex:1"></div><button class="pbtn pbtn-o" onclick="navigate('contact')">Свържете се</button></div>
-    </div>
-  </section>
   <footer id="programs-footer"></footer>
 </div>
 
@@ -1824,7 +1789,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
 
 
     <!-- COURSE SELECTOR CARDS -->
-    <div class="rv">
+    <div class="rv" style="margin-bottom:48px">
 
       <!-- STEP 1 -->
       <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase">Стъпка 1 — Изберете предмет</div>
@@ -2141,7 +2106,6 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
     </div>
 
     </div>
-  
 
   <!-- ЛЕТЕН-ИНФ FORM -->
   <div id="form-летен-инф" style="display:none" class="form-step3">
@@ -2336,9 +2300,7 @@ footer{background:#060f02;padding:56px 56px 28px;border-top:2px solid rgba(106,1
       </div>
     </div>
 
-  </section>
-
-</div>
+  </div>
 
   <footer id="zapisvane-footer"></footer>
 </div>
@@ -3148,7 +3110,3 @@ if(homeLink) homeLink.classList.add('active');
 </script>
 </body>
 </html>
-
-  </div>
-  </div>
-
