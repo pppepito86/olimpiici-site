@@ -140,6 +140,13 @@ nav.scrolled{box-shadow:0 4px 24px rgba(106,191,60,.1)}
 .sec-sub{font-size:15px;color:var(--muted);font-weight:500;line-height:1.7;margin-bottom:40px;max-width:560px}
 .sec-sub.wh{color:rgba(255,255,255,.55)}
 
+
+/* COOKIE BANNER */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#0f2206;color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;flex-wrap:wrap;font-size:14px;font-weight:500;box-shadow:0 -4px 20px rgba(0,0,0,.3)}
+#cookie-banner p{margin:0;color:rgba(255,255,255,.85);line-height:1.5;flex:1;min-width:200px}
+#cookie-banner a{color:var(--green);text-decoration:underline}
+#cookie-banner button{background:var(--green);color:#fff;border:none;border-radius:30px;padding:10px 22px;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Baloo 2',cursive}
+#cookie-banner button:hover{background:#3a8a10}
 /* TICKER */
 .ticker-wrap{background:var(--d2);overflow:hidden;padding:13px 0;border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
 .ticker-inner{display:flex;width:max-content;animation:ticker 30s linear infinite}
@@ -3131,6 +3138,24 @@ function selectLinfoVariantPill(el, v) {
 
 var homeLink = document.querySelector('[data-page="home"]');
 if(homeLink) homeLink.classList.add('active');
+</script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none">
+  <p>🍪 Използваме бисквитки за анализ и реклама (Google Analytics, Meta Pixel). Като продължите да използвате сайта, се съгласявате с <a onclick="navigate('about')" style="cursor:pointer">политиката ни за поверителност</a>.</p>
+  <button onclick="acceptCookies()">Разбрах</button>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', '1');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+(function() {
+  if (!localStorage.getItem('cookiesAccepted')) {
+    document.getElementById('cookie-banner').style.display = 'flex';
+  }
+})();
 </script>
 </body>
 </html>
