@@ -1,36 +1,10 @@
-var OLIMPIICI_LOGO = 'olimpiici.png';
-var SAP_LOGO = 'sap.png';
+var OLIMPIICI_LOGO = '/olimpiici.png';
+var SAP_LOGO = '/sap.png';
 
 var _nli = document.getElementById('nav-logo-img'); if(_nli) _nli.src = OLIMPIICI_LOGO;
 var _sli = document.getElementById('sap-logo-img'); if(_sli) _sli.src = SAP_LOGO;
 
-var footerHTML = '<div class="fg4">'
-  + '<div><div class="flogo"><img src="' + OLIMPIICI_LOGO + '" alt="Олимпийци"></div>'
-  + '<p class="fdesc">Школа по математика и информатика в София. Вдъхновяваме следващото поколение.</p>'
-  + '<div class="fcontact"><p>📍 ул. Екзарх Йосиф 73, до СМГ и метро „Сердика"</p><p>📐 Мат: 0879 868 052 (Васил)</p><p>💻 Инф: 0878 171 825 (Петър)</p><p>✉️ olimpiici@googlegroups.com</p></div>'
-  + '<div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(106,191,60,.1);display:flex;align-items:center;gap:12px">'
-  + '<span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em">С ПОДКРЕПАТА НА</span>'
-  + '<img src="' + SAP_LOGO + '" style="height:24px;opacity:.6" alt="SAP"></div></div>'
-  + '<div class="fcol"><h4>Курсове</h4>'
-  + '<a onclick="navigate(\'prog-info\')">Състезателна информатика</a>'
-  + '<a onclick="navigate(\'prog-math\')">Състезателна математика</a>'
-  + '<a onclick="navigate(\'prog-kg\')">Кандидатстване след 4. клас и след 7. клас</a></div>'
-  + '<div class="fcol"><h4>За школата</h4>'
-  + '<a onclick="navigate(\'teachers\')">Учители</a>'
-  + '<a onclick="navigate(\'howwelearn\')">Как учим</a>'
-  + '<a onclick="navigate(\'results\')">Резултати</a>'
-  + '<a onclick="navigate(\'contact\')">Контакти</a></div>'
-  + '<div class="fcol"><h4>Информация</h4>'
-  + '<a onclick="navigate(\'programs\')">Цени</a>'
-  + '<a onclick="navigate(\'programs\')">Разписание</a>'
-  + '<a href="#">GDPR</a></div></div>'
-  + '<div class="fbot"><p>© 2026 Олимпийци. Всички права запазени.</p>'
-  + '<div class="socrow"><a href="https://www.facebook.com/olimpiicibg" target="_blank" class="soc">f</a></div></div>';
 
-['home','programs','prog-math','prog-info','prog-kg','teachers','results','contact','zapisvane','howwelearn','about'].forEach(function(p){
-  var el = document.getElementById(p + '-footer');
-  if(el) el.innerHTML = footerHTML;
-});
 
 window.addEventListener('scroll', function(){
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
