@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Контакти | Олимпийци"
+  description="Свържете се с нас — ул. Екзарх Йосиф 73, София."
+  canonical="https://olimpiici.com/kontakti"
+>
+  <main class="page-main">
+<div class="breadcrumb"><a href="/">Начало</a><span class="sep">›</span>Контакти & Записване</div>
+  <section class="section">
+    <div class="eyebrow rv">Контакти</div>
+    <div class="sec-title rv">Свържете се с нас</div>
+    <p class="sec-sub rv">Готови сме да отговорим на всеки въпрос — за курсовете, цените или как да started вашето дете.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <h3>Намерете ни</h3>
+          <div class="contact-item rv"><div class="contact-ico">📍</div><div><strong>Адрес</strong><span>София, ул. Екзарх Йосиф 73, партерен етаж<br><small style="color:var(--green);font-weight:700">В близост до СМГ и метростанция „Сердика"</small></span></div></div>
+          <div class="contact-item rv"><div class="contact-ico">📐</div><div><strong>Математика</strong><span>0879 868 052 — Васил Василев</span></div></div>
+          <div class="contact-item rv"><div class="contact-ico">💻</div><div><strong>Информатика</strong><span>0878 171 825 — Петър Петров</span></div></div>
+          <div class="contact-item rv"><div class="contact-ico">✉️</div><div><strong>Имейл</strong><span>olimpiici@googlegroups.com</span></div></div>
+        </div>
+        <div class="rv" style="margin-top:20px;border-radius:var(--rl);overflow:hidden;border:2px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.06)">
+          <iframe width="100%" height="320" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+            src="https://maps.google.com/maps?q=Школа+Олимпийци+София&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            style="display:block">
+          </iframe>
+        </div>
+      </div>
+      <div class="rform rv" style="display:none">
+        <div class="form-title">Изпратете заявка</div>
+        <div class="fgrid">
+          <div class="fgrp"><label>ИМЕ НА УЧЕНИКА</label><input type="text"></div>
+          <div class="fgrp"><label>КЛАС</label>
+            <select>
+              <option value="">Изберете</option>
+              <option>4. клас</option><option>5. клас</option><option>6. клас</option>
+              <option>7. клас</option><option>8. клас</option><option>9. клас</option>
+              <option>10. клас</option><option>11. клас</option><option>12. клас</option>
+            </select>
+          </div>
+        </div>
+        <div class="fgrp"><label>ТЕЛЕФОН</label><input type="tel"></div>
+        <div class="fgrp"><label>ИМЕЙЛ</label><input type="email"></div>
+        <div class="fgrp">
+          <label>ИНТЕРЕСУВАМЕ СЕ ОТ</label>
+          <div class="pills">
+            <span class="pill" onclick="this.classList.toggle('on')">➕ Състезателна математика</span>
+            <span class="pill" onclick="this.classList.toggle('on')">💻 Състезателна информатика</span>
+            <span class="pill" onclick="this.classList.toggle('on')">🎯 Кандидатстване след 4. клас и след 7. клас</span>
+          </div>
+        </div>
+        <div class="fgrp"><label>СЪОБЩЕНИЕ (незадължително)</label><input type="text"></div>
+        <button class="fsub" id="submitBtn" onclick="submitForm()">Тествай потенциала си →</button>
+        <p class="fnote">✅ Ще се свържем с вас до 24 часа · Безплатен пробен урок</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════
+     ЗАПИСВАНЕ PAGE
+════════════════════════════════════ -->
+  </main>
+</Base>

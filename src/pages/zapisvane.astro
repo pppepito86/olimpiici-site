@@ -1,0 +1,538 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Записване | Олимпийци"
+  description="Запишете се за курс по математика, информатика или кандидатстване."
+  canonical="https://olimpiici.com/zapisvane"
+>
+  <main class="page-main">
+<div class="breadcrumb"><a href="/">Начало</a><span class="sep">›</span>Записване</div>
+
+  <section class="section">
+    <div class="eyebrow rv">Записване</div>
+    <div class="sec-title rv">Запишете се за 2026/2027</div>
+    <p class="sec-sub rv">Изберете курса, който ви интересува, и попълнете съответната форма. Ще се свържем с вас в рамките на една седмица.</p>
+
+
+
+    <!-- COURSE SELECTOR CARDS -->
+    <div class="rv" style="margin-bottom:48px">
+
+      <!-- STEP 1 -->
+      <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase">Стъпка 1 — Изберете предмет</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" id="subject-cards">
+
+        <div class="course-card" onclick="selectSubject('math',this)"
+          style="border:2px solid var(--border);border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;background:var(--bg2);transition:all .2s">
+          <div style="font-size:36px;margin-bottom:10px">📐</div>
+          <div style="font-size:15px;font-weight:800;color:var(--dark)">Състезателна математика</div>
+        </div>
+
+        <div class="course-card" onclick="selectSubject('info',this)"
+          style="border:2px solid var(--border);border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;background:var(--bg2);transition:all .2s">
+          <div style="font-size:36px;margin-bottom:10px">💻</div>
+          <div style="font-size:15px;font-weight:800;color:var(--dark)">Състезателна информатика</div>
+        </div>
+
+        <div class="course-card" onclick="selectSubject('kg',this)"
+          style="border:2px solid #f0c0d8;border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;background:#fbeef5;transition:all .2s">
+          <div style="font-size:36px;margin-bottom:10px">🎯</div>
+          <div style="font-size:15px;font-weight:800;color:var(--dark)">Кандидатстване след 4. клас и след 7. клас</div>
+        </div>
+
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="type-selector" style="display:none;margin-top:28px;margin-bottom:28px">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase">Стъпка 2 — Изберете тип курс</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+          <div class="type-card" onclick="selectType('годишен', this)"
+            style="border:2px solid var(--border);border-radius:var(--r);padding:22px 24px;cursor:pointer;background:var(--bg2);transition:all .2s;display:flex;align-items:center;gap:16px">
+            <div style="font-size:32px;flex-shrink:0">📅</div>
+            <div>
+              <div style="font-size:15px;font-weight:800;color:var(--dark);margin-bottom:4px">Годишен курс</div>
+              <div style="font-size:12px;color:var(--muted);font-weight:500">Септември – Юни · 30 седмици</div>
+            </div>
+          </div>
+
+          <div id="type-card-leten" class="type-card" onclick="selectType('летен', this)"
+            style="border:2px solid #ffd54f;border-radius:var(--r);padding:22px 24px;cursor:pointer;background:#fff8e1;transition:all .2s;display:flex;align-items:center;gap:16px;position:relative">
+            <div style="position:absolute;top:-10px;right:16px;background:#e65100;color:white;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px">☀️ НОВО</div>
+            <div style="font-size:32px;flex-shrink:0">☀️</div>
+            <div>
+              <div style="font-size:15px;font-weight:800;color:var(--dark);margin-bottom:4px">Летен курс</div>
+              <div style="font-size:12px;color:#bf6000;font-weight:500">Лято 2026 · Интензивен или седмичен</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORM: INFORMATIKA -->
+    <div id="form-info" style="display:none" class="form-step3">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+      <div class="zapisvane-grid">
+
+        <!-- LEFT: Info -->
+        <div>
+          <div style="background:#eef5fb;border-radius:var(--rl);padding:28px;border:1.5px solid #c8dff2;margin-bottom:24px">
+            <div style="font-size:13px;font-weight:800;color:#185fa5;margin-bottom:12px">💻 Състезателна информатика 2026/2027</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:13px;color:#2a4a7a;font-weight:500">🧮 <strong>120 учебни часа</strong> общо</div>
+              <div style="font-size:13px;color:#2a4a7a;font-weight:500">💰 <strong>720 – 900 €</strong> на три вноски</div>
+              <div style="font-size:13px;color:#2a4a7a;font-weight:500">💻 Език: <strong>C++</strong></div>
+              <div style="font-size:13px;color:#2a4a7a;font-weight:500">📞 Въпроси: <strong>0878 171 825</strong> (Петър)</div>
+            </div>
+          </div>
+          <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+            <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="rform">
+          <div class="form-title">Записване — Информатика</div>
+
+          <div class="fgrid">
+            <div class="fgrp" style="grid-column:1/-1">
+              <label>ИМЕ НА УЧЕНИКА *</label>
+              <input type="text" id="info-student">
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>УЧИЛИЩЕ</label>
+            <input type="text" id="info-school">
+          </div>
+
+          <div class="fgrid">
+            <div class="fgrp">
+              <label>ИМЕ НА РОДИТЕЛ/НАСТОЙНИК *</label>
+              <input type="text" id="info-parent">
+            </div>
+            <div class="fgrp">
+              <label>ТЕЛЕФОН НА РОДИТЕЛ *</label>
+              <input type="tel" id="info-phone">
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>ИМЕЙЛ НА РОДИТЕЛ</label>
+            <input type="email" id="info-email">
+          </div>
+
+          <div class="fgrp">
+            <label>ИНТЕРЕСУВАМ СЕ ОТ *</label>
+            <div class="pills" style="margin-top:8px" id="pills-info-grade">
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 5 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 6 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 7 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 8 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 9 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 10 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 11 клас</span>
+              <span class="pill" onclick="selectOne(this,'info-grade')">Информатика за 12 клас</span>
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+            <div class="pills" style="margin-top:8px" id="pills-info-mode">
+              <span class="pill" onclick="selectOne(this,'info-mode')">Присъствено</span>
+              <span class="pill" onclick="selectOne(this,'info-mode')">Онлайн</span>
+              <span class="pill" onclick="selectOne(this,'info-mode')">Нямам предпочитания</span>
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label>
+            <input type="text" id="info-comment">
+          </div>
+
+          <button class="fsub" onclick="submitToGoogleForms('info', this)">Изпрати заявка →</button>
+          <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- FORM: MATEMATIKA -->
+    <div id="form-math" style="display:none" class="form-step3">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+      <div class="zapisvane-grid">
+
+        <!-- LEFT: Info -->
+        <div>
+          <div style="background:var(--bg2);border-radius:var(--rl);padding:28px;border:1.5px solid var(--border);margin-bottom:24px">
+            <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:12px">📐 Състезателна математика 2026/2027</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:13px;color:var(--muted);font-weight:500">📅 <strong>15 септември – 15 юни</strong></div>
+              <div style="font-size:13px;color:var(--muted);font-weight:500">📍 ул. Екзарх Йосиф 73</div>
+              <div style="font-size:13px;color:var(--muted);font-weight:500">📞 Въпроси: <strong>0879 868 052</strong> (Васил)</div>
+            </div>
+          </div>
+          <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+            <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="rform">
+          <div class="form-title">Записване — Математика</div>
+
+          <div class="fgrp">
+            <label>ИНТЕРЕСУВАМ СЕ ОТ *</label>
+            <div class="pills" style="margin-top:8px" id="pills-math-school">
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 3 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 4 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 5 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 6 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 7 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 8 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 9 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 10 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 11 клас</span>
+              <span class="pill" onclick="selectOne(this,'math-school');updateMathSchedule(this.textContent)">Математика за 12 клас</span>
+            </div>
+          </div>
+
+          <div class="fgrid">
+            <div class="fgrp" style="grid-column:1/-1">
+              <label>ИМЕ НА УЧЕНИКА *</label>
+              <input type="text" id="math-student">
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>УЧИЛИЩЕ *</label>
+            <input type="text" id="math-school-name">
+          </div>
+
+          <div class="fgrp">
+            <label>ТЕЛЕФОН НА УЧЕНИКА (за Viber групите) *</label>
+            <input type="tel" id="math-student-phone">
+          </div>
+
+          <div class="fgrid">
+            <div class="fgrp">
+              <label>ИМЕ НА РОДИТЕЛ *</label>
+              <input type="text" id="math-parent">
+            </div>
+            <div class="fgrp">
+              <label>ТЕЛЕФОН НА РОДИТЕЛ *</label>
+              <input type="tel" id="math-phone">
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>ИМЕЙЛ НА РОДИТЕЛ *</label>
+            <input type="email" id="math-email">
+          </div>
+
+          <div class="fgrp">
+            <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+            <div class="pills" style="margin-top:8px" id="pills-math-mode">
+              <span class="pill" onclick="selectOne(this,'math-mode')">Присъствено</span>
+              <span class="pill" onclick="selectOne(this,'math-mode')">Онлайн</span>
+              <span class="pill" onclick="selectOne(this,'math-mode')">Нямам предпочитания</span>
+            </div>
+          </div>
+
+          <div class="fgrp" id="math-schedule-wrap" style="display:none">
+            <label id="math-schedule-label">КОИ ВРЕМЕНА СА ВИ УДОБНИ? *</label>
+            <div id="math-schedule-options" style="display:flex;flex-direction:column;gap:8px;margin-top:4px"></div>
+          </div>
+
+          <div class="fgrp">
+            <label>КАК РАЗБРАХТЕ ЗА НАС?</label>
+            <div class="pills" style="margin-top:8px" id="pills-math-source">
+              <span class="pill" onclick="selectOne(this,'math-source')">Данибон</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">Алек Димитров</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">Вече сте посещавали наши курсове.</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От сайта ни (olimpiici.com).</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От фейсбук страницата ни.</span>
+              <span class="pill" onclick="selectOne(this,'math-source')">От приятел/познат.</span>
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label>
+            <input type="text" id="math-comment">
+          </div>
+
+          <button class="fsub" onclick="submitToGoogleForms('math', this)">Изпрати заявка →</button>
+          <p class="fnote">* Задължителни полета</p>
+        </div>
+      </div>
+    </div>
+
+<!-- ГОДИШЕН-КГ FORM -->
+  <div id="form-годишен-кг" style="display:none" class="form-step3">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+    <div class="zapisvane-grid">
+      <div>
+        <div style="background:#fbeef5;border-radius:var(--rl);padding:28px;border:1.5px solid #f0c0d8;margin-bottom:24px">
+          <div style="font-size:13px;font-weight:800;color:#993556;margin-bottom:12px">🎯 Кандидатстване след 4. клас и след 7. клас 2026/2027</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;color:#993556;font-weight:500">📅 <strong>15 септември – 15 юни</strong></div>
+            <div style="font-size:13px;color:#993556;font-weight:500">🏫 <strong>СМГ, НПМГ, ТУЕС</strong> и други</div>
+            <div style="font-size:13px;color:#993556;font-weight:500">📍 ул. Екзарх Йосиф 73</div>
+            <div style="font-size:13px;color:#993556;font-weight:500">📞 <strong>0879 868 052</strong> (Васил)</div>
+          </div>
+        </div>
+        <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+          <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+        </div>
+      </div>
+      <div class="rform">
+        <div class="form-title">Записване — Кандидатстване след 4. клас и след 7. клас</div>
+        <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="kg-student"></div>
+        <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="kg-school-name"></div>
+        <div class="fgrid">
+          <div class="fgrp"><label>ИМЕ НА РОДИТЕЛ *</label><input type="text" id="kg-parent"></div>
+          <div class="fgrp"><label>ТЕЛЕФОН *</label><input type="tel" id="kg-phone"></div>
+        </div>
+        <div class="fgrp"><label>ИМЕЙЛ</label><input type="email" id="kg-email"></div>
+        <div class="fgrp">
+          <label>КЛАС *</label>
+          <div class="pills" style="margin-top:8px" id="pills-kg-grade">
+            <span class="pill" onclick="selectOne(this,'kg-grade')">4. клас</span>
+            <span class="pill" onclick="selectOne(this,'kg-grade')">7. клас</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ЦЕЛЕВА ГИМНАЗИЯ</label>
+          <div class="pills" style="margin-top:8px" id="pills-kg-school">
+            <span class="pill" onclick="selectOne(this,'kg-school')">СМГ</span>
+            <span class="pill" onclick="selectOne(this,'kg-school')">НПМГ</span>
+            <span class="pill" onclick="selectOne(this,'kg-school')">ТУЕС</span>
+            <span class="pill" onclick="selectOne(this,'kg-school')">Друга</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+          <div class="pills" style="margin-top:8px" id="pills-kg-mode">
+            <span class="pill" onclick="selectOne(this,'kg-mode')">Присъствено</span>
+            <span class="pill" onclick="selectOne(this,'kg-mode')">Онлайн</span>
+            <span class="pill" onclick="selectOne(this,'kg-mode')">Нямам предпочитания</span>
+          </div>
+        </div>
+        <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="kg-comment"></div>
+        <button class="fsub" onclick="submitToGoogleForms('kg', this)">Изпрати заявка →</button>
+        <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+      </div>
+    </div>
+
+    </div>
+
+  <!-- ЛЕТЕН-ИНФ FORM -->
+  <div id="form-летен-инф" style="display:none" class="form-step3">
+    <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+    <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Изберете вариант и попълнете формата</div>
+
+    <!-- VARIANT SELECTOR -->
+    <div style="display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap">
+      <div id="linfo-v1-card" onclick="selectLinfoVariant(1)" style="flex:1;min-width:240px;background:#fff8e1;border:2px solid #ffd54f;border-radius:var(--rl);padding:22px 20px;cursor:pointer;transition:all .2s">
+        <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:10px">⚡ Вариант 1 — Интензивен</div>
+        <div style="font-size:12px;color:#bf6000;font-weight:500;line-height:1.7">
+          📅 <strong>1 – 9 юли</strong>, всеки ден<br>
+          🕐 13:00 – 18:00 ч. (4 ч. + 1 ч. почивка)<br>
+          📍 Присъствено, ул. Екзарх Йосиф 73<br>
+          💰 <strong>750 лева</strong>
+        </div>
+      </div>
+      <div id="linfo-v2-card" onclick="selectLinfoVariant(2)" style="flex:1;min-width:240px;background:#f3f8ff;border:2px solid var(--border);border-radius:var(--rl);padding:22px 20px;cursor:pointer;transition:all .2s">
+        <div style="font-size:13px;font-weight:800;color:#2a4a7a;margin-bottom:10px">📅 Вариант 2 — Седмичен</div>
+        <div style="font-size:12px;color:#3a5a8a;font-weight:500;line-height:1.7">
+          📅 <strong>1 юли – 26 август</strong>, всяка сряда<br>
+          🕐 11:00 – 13:00 ч.<br>
+          💻 Онлайн<br>
+          💰 <strong>400 лева</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHARED INFO BOX -->
+    <div style="background:#fffbea;border-radius:var(--r);padding:14px 18px;border:1px solid #ffd54f;margin-bottom:28px;font-size:13px;color:#bf6000;font-weight:500">
+      🎓 <strong>За ученици завършили 5. клас.</strong> Целта е да затвърди темите от Е група и да подготви за успешен старт в Д група. 💻 Език: <strong>C++</strong> · 📞 <strong>0878 171 825</strong> (Петър)
+    </div>
+
+    <!-- FORM -->
+    <div class="zapisvane-grid">
+      <div>
+        <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+          <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+        </div>
+      </div>
+      <div class="rform">
+        <div class="form-title">Записване — Летен курс Информатика</div>
+        <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="linfo-student"></div>
+        <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="linfo-school"></div>
+        <div class="fgrid">
+          <div class="fgrp"><label>ИМЕ НА РОДИТЕЛ *</label><input type="text" id="linfo-parent"></div>
+          <div class="fgrp"><label>ТЕЛЕФОН *</label><input type="tel" id="linfo-phone"></div>
+        </div>
+        <div class="fgrp"><label>ИМЕЙЛ</label><input type="email" id="linfo-email"></div>
+        <div class="fgrp">
+          <label>ВАРИАНТ *</label>
+          <div class="pills" style="margin-top:8px" id="pills-linfo-grade">
+            <span class="pill" onclick="selectLinfoVariantPill(this,1)">⚡ Интензивен (1-9 юли · 750 лв.)</span>
+            <span class="pill" onclick="selectLinfoVariantPill(this,2)">📅 Седмичен (всяка сряда · 400 лв.)</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+          <div class="pills" style="margin-top:8px" id="pills-linfo-mode">
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Присъствено</span>
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Онлайн</span>
+            <span class="pill" onclick="selectOne(this,'linfo-mode')">Няма значение</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ИНТЕРЕС КЪМ КУРС ЗА Д ГРУПА (СЕПТЕМВРИ)?</label>
+          <div class="pills" id="pills-linfo-dgr" style="margin-top:8px">
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Да</span>
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Не</span>
+            <span class="pill" onclick="selectOne(this,'linfo-dgr')">Не съм решил</span>
+          </div>
+        </div>
+        <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="linfo-comment"></div>
+        <button class="fsub" onclick="submitToGoogleForms('linfo', this)">Изпрати заявка →</button>
+        <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЛЕТЕН-МАТ FORM -->
+  <div id="form-летен-мат" style="display:none" class="form-step3">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+    <div class="zapisvane-grid">
+      <div>
+        <div style="background:#fff8e1;border-radius:var(--rl);padding:28px;border:1.5px solid #ffd54f;margin-bottom:24px">
+          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:12px">☀️ Летен курс по математика</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;color:#bf6000;font-weight:500">📅 <strong>Лято 2026</strong></div>
+            <div style="font-size:13px;color:#bf6000;font-weight:500">⚡ Интензивен или седмичен формат</div>
+            <div style="font-size:13px;color:#bf6000;font-weight:500">📞 <strong>0879 868 052</strong> (Васил)</div>
+          </div>
+        </div>
+        <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+          <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+        </div>
+      </div>
+      <div class="rform">
+        <div class="form-title">Записване — Летен курс Математика</div>
+        <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="lmat-student"></div>
+        <div class="fgrid">
+          <div class="fgrp"><label>ИМЕ НА РОДИТЕЛ *</label><input type="text" id="lmat-parent"></div>
+          <div class="fgrp"><label>ТЕЛЕФОН *</label><input type="tel" id="lmat-phone"></div>
+        </div>
+        <div class="fgrp"><label>ИМЕЙЛ</label><input type="email" id="lmat-email"></div>
+        <div class="fgrp">
+          <label>КЛАС *</label>
+          <div class="pills" style="margin-top:8px" id="pills-lmat-grade">
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 5 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 6 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 7 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 8 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 9 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 10 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 11 клас</span>
+            <span class="pill" onclick="selectOne(this,'lmat-grade')">Информатика за 12 клас</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+          <div class="pills" style="margin-top:8px" id="pills-lmat-mode">
+            <span class="pill" onclick="selectOne(this,'lmat-format')">Присъствено</span>
+            <span class="pill" onclick="selectOne(this,'lmat-format')">Онлайн</span>
+            <span class="pill" onclick="selectOne(this,'lmat-format')">Нямам предпочитания</span>
+          </div>
+        </div>
+        <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="lmat-comment"></div>
+        <button class="fsub" onclick="submitToGoogleForms('lmat', this)">Изпрати заявка →</button>
+        <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЛЕТЕН-КГ FORM -->
+  <div id="form-летен-кг" style="display:none" class="form-step3">
+        <div style="width:100%;height:1px;background:var(--border);margin-bottom:28px"></div>
+        <div style="font-size:12px;font-weight:800;color:var(--muted);margin-bottom:20px;letter-spacing:.06em;text-transform:uppercase">Стъпка 3 — Попълнете формата</div>
+    <div class="zapisvane-grid">
+      <div>
+        <div style="background:#fff8e1;border-radius:var(--rl);padding:28px;border:1.5px solid #ffd54f;margin-bottom:24px">
+          <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:12px">☀️ Летен курс — Кандидатстване след 4. клас и след 7. клас</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;color:#bf6000;font-weight:500">📅 <strong>Лято 2026</strong></div>
+            <div style="font-size:13px;color:#bf6000;font-weight:500">⚡ Интензивен или седмичен формат</div>
+            <div style="font-size:13px;color:#bf6000;font-weight:500">🏫 <strong>СМГ, НПМГ, ТУЕС</strong></div>
+            <div style="font-size:13px;color:#bf6000;font-weight:500">📞 <strong>0879 868 052</strong> (Васил)</div>
+          </div>
+        </div>
+        <div style="background:var(--gl);border-radius:var(--r);padding:16px 20px;border:1px solid var(--gm)">
+          <div style="font-size:13px;font-weight:800;color:var(--gd);margin-bottom:4px">🎁 Безплатен пробен урок</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:500">За всеки нов ученик — без ангажимент</div>
+        </div>
+      </div>
+      <div class="rform">
+        <div class="form-title">Записване — Летен курс Кандидатстване след 4. клас и след 7. клас</div>
+        <div class="fgrp"><label>ИМЕ НА УЧЕНИКА *</label><input type="text" id="lkg-student"></div>
+        <div class="fgrp"><label>УЧИЛИЩЕ</label><input type="text" id="lkg-school-name"></div>
+        <div class="fgrid">
+          <div class="fgrp"><label>ИМЕ НА РОДИТЕЛ *</label><input type="text" id="lkg-parent"></div>
+          <div class="fgrp"><label>ТЕЛЕФОН *</label><input type="tel" id="lkg-phone"></div>
+        </div>
+        <div class="fgrp"><label>ИМЕЙЛ</label><input type="email" id="lkg-email"></div>
+        <div class="fgrp">
+          <label>КЛАС *</label>
+          <div class="pills" style="margin-top:8px" id="pills-lkg-grade">
+            <span class="pill" onclick="selectOne(this,'lkg-grade')">4. клас</span>
+            <span class="pill" onclick="selectOne(this,'lkg-grade')">7. клас</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ЦЕЛЕВА ГИМНАЗИЯ</label>
+          <div class="pills" style="margin-top:8px" id="pills-lkg-school">
+            <span class="pill" onclick="selectOne(this,'lkg-school')">СМГ</span>
+            <span class="pill" onclick="selectOne(this,'lkg-school')">НПМГ</span>
+            <span class="pill" onclick="selectOne(this,'lkg-school')">ТУЕС</span>
+            <span class="pill" onclick="selectOne(this,'lkg-school')">Друга</span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label>ФОРМА НА ОБУЧЕНИЕ *</label>
+          <div class="pills" style="margin-top:8px" id="pills-lkg-mode">
+            <span class="pill" onclick="selectOne(this,'lkg-format')">Присъствено</span>
+            <span class="pill" onclick="selectOne(this,'lkg-format')">Онлайн</span>
+            <span class="pill" onclick="selectOne(this,'lkg-format')">Нямам предпочитания</span>
+          </div>
+        </div>
+        <div class="fgrp"><label>ВЪПРОСИ ИЛИ КОМЕНТАРИ</label><input type="text" id="lkg-comment"></div>
+        <button class="fsub" onclick="submitToGoogleForms('lkg', this)">Изпрати заявка →</button>
+        <p class="fnote">✅ Ще се свържем с вас до 24 часа</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     КАК УЧИМ PAGE
+════════════════════════════════════ -->
+  </main>
+</Base>

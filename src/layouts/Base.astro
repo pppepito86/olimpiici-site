@@ -1,0 +1,165 @@
+---
+const { title, description, canonical } = Astro.props;
+const siteUrl = "https://olimpiici.com";
+---
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="language" content="bg">
+  <meta http-equiv="Content-Language" content="bg">
+  <meta name="google" content="notranslate">
+  <title>{title}</title>
+  <meta name="description" content={`${description}`} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={`${canonical || siteUrl + "/"}`} />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:title" content={`${title}`} />
+  <meta property="og:description" content={`${description}`} />
+  <meta property="og:url" content={`${canonical || siteUrl}`} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:image" content="https://olimpiici.com/og-image.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Олимпийци",
+    "url": "https://olimpiici.com/",
+    "description": "Школа по състезателна математика и информатика за ученици от 3. до 12. клас. Подготовка за национални състезания, НВО и прием в СМГ и НПМГ.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Екзарх Йосиф 73",
+      "addressLocality": "София",
+      "addressCountry": "BG"
+    },
+    "telephone": "+359879868052",
+    "email": "olimpiici@googlegroups.com",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Bulgaria"
+    },
+    "educationalLevel": "3–12 клас",
+    "teaches": [
+      "Математика",
+      "Информатика",
+      "Състезателна математика",
+      "Състезателна информатика",
+      "Подготовка за НВО",
+      "Подготовка за СМГ",
+      "Подготовка за НПМГ",
+      "Национални състезания"
+    ],
+    "sameAs": ["https://www.facebook.com/olimpiicibg"]
+  }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKYRE1YTS5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XKYRE1YTS5');
+  </script>
+
+  <!-- Meta Pixel се зарежда след cookie съгласие -->
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="/">
+    <img id="nav-logo-img" src="/olimpiici.png" alt="Олимпийци">
+  </a>
+  <div class="nav-links">
+    <div class="nav-dropdown">
+      <a class="nav-link" data-page="programs" href="/kursuive" style="cursor:pointer">Курсове ▾</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/matematika">📐 Състезателна математика</a>
+        <a class="dropdown-item" href="/informatika">💻 Състезателна информатика</a>
+        <a class="dropdown-item" href="/kandidatstvane">🎯 Кандидатстване след 4. клас и след 7. клас</a>
+      </div>
+    </div>
+    <a class="nav-link" href="/rezultati" data-page="results">Резултати</a>
+    <div class="nav-dropdown">
+      <a class="nav-link" data-page="about" href="/za-nas" style="cursor:pointer">За школата ▾</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/prepodavateli">👨‍🏫 Преподаватели</a>
+        <a class="dropdown-item" href="/kak-uchim">🧠 Как учим</a>
+        <a class="dropdown-item" href="/kontakti">📍 Контакти</a>
+      </div>
+    </div>
+  </div>
+  <a class="nav-cta" href="/zapisvane"><span class="cta-icon">🎓 </span>Запиши се</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a class="mm-link" href="/kursuive" onclick="toggleMenu()">Курсове</a>
+  <a class="mm-link" href="/rezultati" onclick="toggleMenu()">Резултати</a>
+  <a class="mm-link" href="/za-nas" onclick="toggleMenu()">За школата</a>
+  <a class="mm-link" href="/zapisvane" onclick="toggleMenu()">Запиши се →</a>
+</div>
+
+
+
+
+<slot />
+
+<footer id="page-footer">
+  <div class="fg4">
+    <div class="fcontact">
+      <img src="/olimpiici.png" style="height:36px;margin-bottom:12px" alt="Олимпийци">
+      <p>Школа по математика и информатика в София. Вдъхновяване следващото поколение.</p>
+      <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.4);display:flex;flex-direction:column;gap:6px">
+        <span>📍 ул. Екзарх Йосиф 73, до СМГ и метро „Сердика"</span>
+        <span>📐 Мат: <a href="tel:0879868052" style="color:rgba(255,255,255,.6)">0879 868 052</a> (Васил)</span>
+        <span>💻 Инф: <a href="tel:0878171825" style="color:rgba(255,255,255,.6)">0878 171 825</a> (Петър)</span>
+        <span>✉️ <a href="mailto:olimpiici@googlegroups.com" style="color:rgba(255,255,255,.6)">olimpiici@googlegroups.com</a></span>
+      </div>
+      <div style="margin-top:20px;display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,.35)">С ПОДКРЕПАТА НА <img src="/sap.png" style="height:22px;opacity:.7" alt="SAP"></div>
+    </div>
+    <div class="fcol fc">
+      <h4>Курсове</h4>
+      <a href="/informatika" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Състезателна информатика</a>
+      <a href="/matematika" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Състезателна математика</a>
+      <a href="/kandidatstvane" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Кандидатстване след 4. и 7. клас</a>
+    </div>
+    <div class="fcol fc">
+      <h4>За школата</h4>
+      <a href="/prepodavateli" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Преподаватели</a>
+      <a href="/kak-uchim" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Как учим</a>
+      <a href="/rezultati" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Резултати</a>
+      <a href="/kontakti" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Контакти</a>
+    </div>
+    <div class="fcol fc">
+      <h4>Информация</h4>
+      <a href="/zapisvane" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Цени</a>
+      <a href="/zapisvane" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">Разписание</a>
+      <a href="/gdpr" style="display:block;color:rgba(255,255,255,.65);margin-bottom:9px;font-size:13px;font-weight:500">GDPR</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>© 2026 Олимпийци. Всички права запазени.</p>
+    <div class="socrow"><a href="https://www.facebook.com/olimpiicibg" target="_blank" class="soc">f</a></div>
+  </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner">
+  <p style="margin:0;color:rgba(255,255,255,.85);line-height:1.5;flex:1;min-width:200px">🍪 Използваме бисквитки за анализ и реклама (Google Analytics, Meta Pixel). Като продължите да използвате сайта, се съгласявате с <a href="/gdpr" style="color:var(--green);text-decoration:underline">политиката ни за поверителност</a>.</p>
+  <button onclick="acceptCookies()" style="background:var(--green);color:#fff;border:none;border-radius:30px;padding:10px 22px;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Baloo 2',cursive">Разбрах</button>
+</div>
+
+<script src="/main.js" is:inline></script>
+</body>
+</html>
