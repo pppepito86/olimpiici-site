@@ -2,3 +2,20 @@ User-agent: *
 Allow: /
 
 Sitemap: https://olimpiici.com/sitemap.xml
+
+# AI crawlers
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Googlebot
+Allow: /llms.txt
+Allow: /llms-full.txt
