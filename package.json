@@ -8,6 +8,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fontsource/baloo-2": "^5.2.7",
+    "@fontsource/nunito": "^5.2.7",
     "astro": "^4.0.0"
   }
 }
