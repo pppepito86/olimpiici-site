@@ -6,6 +6,29 @@ import Base from '../layouts/Base.astro';
   description="Подготовка за кандидатстване след 4. и 7. клас в СМГ, НПМГ и ТУЕС. Задачи от реалния изпит и индивидуален подход. Записването е отворено."
   canonical="https://olimpiici.com/kandidatstvane"
 >
+  <script type="application/ld+json" slot="head">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Кандидатстване след 4. и 7. клас — СМГ, НПМГ, ТУЕС",
+    "description": "Подготовка за приемни изпити в СМГ, НПМГ и ТУЕС. Задачи от реалния изпит, пробни изпити всеки месец и индивидуален разбор на грешките.",
+    "url": "https://olimpiici.com/kandidatstvane",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Олимпийци",
+      "url": "https://olimpiici.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Екзарх Йосиф 73",
+        "addressLocality": "София",
+        "addressCountry": "BG"
+      }
+    },
+    "educationalLevel": "4. и 7. клас",
+    "teaches": ["Математика", "Подготовка за НВО", "Подготовка за СМГ", "Подготовка за НПМГ", "Подготовка за ТУЕС"],
+    "availableLanguage": "bg",
+    "courseMode": ["onsite", "online"],
+    "inLanguage": "bg"
+  })}</script>
   <main class="page-main">
 <div class="breadcrumb"><a href="/">Начало</a><span class="sep">›</span><a href="/kursove">Курсове</a><span class="sep">›</span>Кандидатстване след 4. клас и след 7. клас</div>
   <div class="prog-detail-hero kg">

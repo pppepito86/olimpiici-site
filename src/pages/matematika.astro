@@ -6,6 +6,29 @@ import Base from '../layouts/Base.astro';
   description="Курсове по състезателна математика за 3–12 клас в София. Подготовка за НОМ, IMO и прием в СМГ и НПМГ с бивши олимпийски медалисти."
   canonical="https://olimpiici.com/matematika"
 >
+  <script type="application/ld+json" slot="head">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Курсове по състезателна математика",
+    "description": "Системна подготовка за НОМ, IMO и прием в СМГ и НПМГ. Алгебра, геометрия, комбинаторика и теория на числата с бивши олимпийски медалисти.",
+    "url": "https://olimpiici.com/matematika",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Олимпийци",
+      "url": "https://olimpiici.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Екзарх Йосиф 73",
+        "addressLocality": "София",
+        "addressCountry": "BG"
+      }
+    },
+    "educationalLevel": "3–12 клас",
+    "teaches": ["Алгебра", "Геометрия", "Комбинаторика", "Теория на числата", "Състезателна математика"],
+    "availableLanguage": "bg",
+    "courseMode": ["onsite", "online"],
+    "inLanguage": "bg"
+  })}</script>
   <main class="page-main">
 <div class="breadcrumb"><a href="/">Начало</a><span class="sep">›</span><a href="/kursove">Курсове</a><span class="sep">›</span>Курсове по състезателна математика</div>
   <div class="prog-detail-hero math" id="prog-math-hero">

@@ -6,6 +6,29 @@ import Base from '../layouts/Base.astro';
   description="Курсове по състезателна информатика и програмиране за 6–12 клас. C++, алгоритми и структури от данни. Подготовка за НОИ и IOI с бивши медалисти."
   canonical="https://olimpiici.com/informatika"
 >
+  <script type="application/ld+json" slot="head">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Курсове по състезателна информатика и програмиране",
+    "description": "Подготовка за НОИ и международни олимпиади. C++, алгоритми и структури от данни. №1 школа по брой класирани ученици на НОИ за последните 5 години.",
+    "url": "https://olimpiici.com/informatika",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Олимпийци",
+      "url": "https://olimpiici.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Екзарх Йосиф 73",
+        "addressLocality": "София",
+        "addressCountry": "BG"
+      }
+    },
+    "educationalLevel": "5–12 клас",
+    "teaches": ["C++", "Алгоритми", "Структури от данни", "Алгоритмично мислене", "Състезателна информатика"],
+    "availableLanguage": "bg",
+    "courseMode": ["onsite", "online"],
+    "inLanguage": "bg"
+  })}</script>
   <main class="page-main">
 <div class="breadcrumb"><a href="/">Начало</a><span class="sep">›</span><a href="/kursove">Курсове</a><span class="sep">›</span>Състезателна информатика</div>
 
