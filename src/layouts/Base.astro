@@ -104,7 +104,13 @@ const siteUrl = "https://olimpiici.com";
       </div>
     </div>
     <a class="nav-link" href="/zashto" data-page="zashto">Защо Олимпийци</a>
-    <a class="nav-link" href="/rezultati" data-page="results">Резултати</a>
+    <div class="nav-dropdown">
+      <a class="nav-link" data-page="results" href="/rezultati" style="cursor:pointer">Резултати ▾</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/rezultati">🏆 Резултати от състезания</a>
+        <a class="dropdown-item" href="/sled-olimpiadite">🎓 Пътят след олимпиадите</a>
+      </div>
+    </div>
     <a class="nav-link" href="/prepodavateli" data-page="prepodavateli">Преподаватели</a>
     <div class="nav-dropdown">
       <a class="nav-link" data-page="about" href="/za-nas" style="cursor:pointer">За школата ▾</a>
@@ -123,7 +129,8 @@ const siteUrl = "https://olimpiici.com";
 <div class="mobile-menu" id="mobile-menu">
   <a class="mm-link" href="/kursove" onclick="toggleMenu()">Курсове</a>
   <a class="mm-link" href="/zashto" onclick="toggleMenu()">Защо Олимпийци</a>
-  <a class="mm-link" href="/rezultati" onclick="toggleMenu()">Резултати</a>
+  <a class="mm-link" href="/rezultati" onclick="toggleMenu()">Резултати от състезания</a>
+  <a class="mm-link" href="/sled-olimpiadite" onclick="toggleMenu()">Пътят след олимпиадите</a>
   <a class="mm-link" href="/prepodavateli" onclick="toggleMenu()">Преподаватели</a>
   <a class="mm-link" href="/za-nas" onclick="toggleMenu()">За школата</a>
   <a class="mm-link" href="/zapisvane" onclick="toggleMenu()">Запиши се →</a>
