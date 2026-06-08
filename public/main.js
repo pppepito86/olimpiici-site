@@ -1,3 +1,29 @@
+function showToast(msg, isError) {
+  var t = document.getElementById('_toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = '_toast';
+    t.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-40px);padding:36px 48px 32px 44px;border-radius:18px;font-size:20px;font-weight:700;color:#fff;z-index:9999;opacity:0;transition:opacity .35s,transform .35s;pointer-events:none;text-align:center;max-width:min(560px,90vw);box-shadow:0 8px 48px rgba(0,0,0,.32);display:flex;flex-direction:column;align-items:center;gap:18px';
+    document.body.appendChild(t);
+  }
+  if (t._autoClose) { clearTimeout(t._autoClose); t._autoClose = null; }
+  var closeBtn = document.createElement('span');
+  closeBtn.textContent = 'Затвори  ✕';
+  closeBtn.style.cssText = 'cursor:pointer;font-size:15px;opacity:.85;margin-top:4px;padding:6px 18px;border:2px solid rgba(255,255,255,.5);border-radius:8px;';
+  function hideToast() { t.style.opacity='0'; t.style.transform='translate(-50%,-40px)'; t.style.pointerEvents='none'; if(t._autoClose){ clearTimeout(t._autoClose); t._autoClose=null; } }
+  closeBtn.onclick = hideToast;
+  t.textContent = '';
+  var msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  t.appendChild(msgSpan);
+  t.appendChild(closeBtn);
+  t.style.background = isError ? '#c0392b' : '#2a7a0e';
+  t.style.opacity = '1';
+  t.style.transform = 'translate(-50%,0)';
+  t.style.pointerEvents = 'auto';
+  t._autoClose = setTimeout(hideToast, 10000);
+}
+
 var OLIMPIICI_LOGO = '/olimpiici.png';
 var SAP_LOGO = '/sap.png';
 
@@ -350,7 +376,8 @@ function submitToGoogleForms(prefix, btn) {
       // 2. Успех от Sheets — опитваме и Forms (fire-and-forget, без CORS проблем)
       sendToGoogleForms(prefix);
 
-      btn.textContent = '✅ Заявката е изпратена!';
+      showToast('✅ Заявката е изпратена успешно.');
+      btn.textContent = '✅ Изпратена!';
       btn.style.background = '#3a8a10';
       var form = btn.closest('.rform');
       if (form) {
@@ -387,7 +414,8 @@ function submitToGoogleForms(prefix, btn) {
   })
   .catch(function(err) {
     console.error('GAS error:', err);
-    btn.textContent = '❌ Грешка при изпращане — опитайте пак';
+    showToast('❌ Грешка при изпращане — опитайте пак или се свържете с нас по телефон.', true);
+    btn.textContent = '❌ Грешка — опитайте пак';
     btn.style.background = '#c0392b';
     setTimeout(function(){
       btn.textContent = 'Изпрати заявка →';
