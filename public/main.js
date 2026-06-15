@@ -365,6 +365,10 @@ function submitToGoogleForms(prefix, btn) {
 
   var GAS_URL = 'https://script.google.com/macros/s/AKfycbz4mdwpr0XXmBJjeE2mwe0Z8jilfwEtHqL7LQ4Ae_tm26jqf8HGUUqtNTDnWywsAOCrLg/exec';
 
+  var formNames = { info: 'Информатика - Годишен', math: 'Математика - Годишен', kg: 'Кандидатстване - Годишен', linfo: 'Информатика - Летен', lmat: 'Математика - Летен', lkg: 'Кандидатстване - Летен' };
+  var formLabel = formNames[prefix] || prefix;
+  fbTrack('InitiateCheckout', { content_name: formLabel, content_category: 'zapisvane' });
+
   // 1. Пращаме към Apps Script (реален fetch — знаем дали е ОК)
   fetch(GAS_URL, {
     method: 'POST',
@@ -375,6 +379,7 @@ function submitToGoogleForms(prefix, btn) {
     if (json.status === 'ok') {
       // 2. Успех от Sheets — опитваме и Forms (fire-and-forget, без CORS проблем)
       sendToGoogleForms(prefix);
+      fbTrack('Lead', { content_name: formLabel, content_category: 'zapisvane' });
 
       showToast('✅ Заявката е изпратена успешно.');
       btn.textContent = '✅ Изпратена!';
@@ -414,6 +419,7 @@ function submitToGoogleForms(prefix, btn) {
   })
   .catch(function(err) {
     console.error('GAS error:', err);
+    fbTrackCustom('FormError', { content_name: formLabel, content_category: 'zapisvane' });
     showToast('❌ Грешка при изпращане — опитайте пак или се свържете с нас по телефон.', true);
     btn.textContent = '❌ Грешка — опитайте пак';
     btn.style.background = '#c0392b';
@@ -493,6 +499,8 @@ var selectedSubject = null;
 
 function selectSubject(subject, card) {
   selectedSubject = subject;
+  var subjectNames = { math: 'Математика', info: 'Информатика', kg: 'Кандидатстване' };
+  fbTrack('ViewContent', { content_name: 'Записване - ' + (subjectNames[subject] || subject), content_category: 'zapisvane' });
   document.querySelectorAll('#subject-cards .course-card').forEach(function(c){
     c.style.borderColor = c.style.background.includes('fbeef5') ? '#f0c0d8' : 'var(--border)';
     c.style.transform = '';
@@ -517,6 +525,9 @@ function selectSubject(subject, card) {
 
 function selectType(type, cardEl) {
   if(!selectedSubject) { console.log('NO SUBJECT!'); return; }
+  var subjectNames = { math: 'Математика', info: 'Информатика', kg: 'Кандидатстване' };
+  var typeNames = { 'годишен': 'Годишен курс', 'летен': 'Летен курс' };
+  fbTrack('ViewContent', { content_name: 'Записване - ' + (subjectNames[selectedSubject] || selectedSubject) + ' - ' + (typeNames[type] || type), content_category: 'zapisvane' });
   document.querySelectorAll('.type-card').forEach(function(c){
     c.style.borderColor = c.style.background.includes('fff8e1') ? '#ffd54f' : 'var(--border)';
     c.style.transform = '';
@@ -660,4 +671,30 @@ function loadTrackingScripts() {
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','1440746296612824');
   fbq('track','PageView');
+  var pageNames = {
+    '/': 'Начало',
+    '/informatika': 'Информатика',
+    '/matematika': 'Математика',
+    '/kursove': 'Курсове',
+    '/zapisvane': 'Записване',
+    '/kontakti': 'Контакти',
+    '/za-nas': 'За нас',
+    '/prepodavateli': 'Преподаватели',
+    '/rezultati': 'Резултати',
+    '/kak-uchim': 'Как учим',
+    '/zashto': 'Защо Олимпийци',
+    '/kandidatstvane': 'Кандидатстване',
+    '/sled-olimpiadite': 'След олимпиадите',
+    '/gdpr': 'GDPR'
+  };
+  var path = window.location.pathname.replace(/\/+$/, '') || '/';
+  var pageName = pageNames[path];
+  if (pageName) fbq('trackCustom', 'PageOpen', { content_name: pageName });
+}
+
+function fbTrack(event, params) {
+  if (typeof fbq === 'function') fbq('track', event, params || {});
+}
+function fbTrackCustom(event, params) {
+  if (typeof fbq === 'function') fbq('trackCustom', event, params || {});
 }
