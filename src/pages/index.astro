@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
 ---
 <Base
   title="Курсове по състезателна математика и информатика | Олимпийци"
@@ -45,6 +46,7 @@ import Base from '../layouts/Base.astro';
   </div>
   </div><!-- end hero-wrap -->
 
+  <PhotoGallery />
 
   <section class="section rv">
     <div class="eyebrow">Курсове</div>
@@ -154,14 +156,14 @@ import Base from '../layouts/Base.astro';
     <div class="eyebrow wh">Преподаватели</div>
     <div class="sec-title wh">Кой стои зад резултатите</div>
     <div class="teach-grid-home">
-      <div class="teach-card rv"><div class="teach-av" style="background:#6abf3c;padding:0;overflow:hidden"><img src="/vasil.png" alt="Васил Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Васил Василев</div><div class="teach-achiev">🏆 Участник в Intel ISEF</div><div class="teach-sub">Ръководител по математика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#534ab7;padding:0;overflow:hidden"><img src="/ivanov.jpg" alt="Александър Иванов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Александър Иванов</div><div class="teach-achiev">🥇 Двукратен медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#2d7dd2;padding:0;overflow:hidden"><img src="/yoan.jpg" alt="Йоан Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Йоан Василев</div><div class="teach-achiev">📐 Класиран на национален кръг на НОМ</div><div class="teach-sub">Ръководител по математика 3.–4. клас</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#1d9e75;padding:0;overflow:hidden"><img src="/angel.jpg" alt="Ангел Райчев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Ангел Райчев</div><div class="teach-achiev">🥇 Медалист от БОМ</div><div class="teach-sub">Преподавател по математика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#c0392b;padding:0;overflow:hidden"><img src="/martin.jpg" alt="Мартин Димитров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Мартин Димитров</div><div class="teach-achiev">🎓 Harvard University</div><div class="teach-sub">Преподавател по математика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#8e44ad;padding:0;overflow:hidden"><img src="/petko.jpg" alt="Петко Лазаров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петко Лазаров</div><div class="teach-achiev">🥇 Медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#378add;padding:0;overflow:hidden"><img src="/petar.png" alt="Петър Петров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петър Петров</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Ръководител по информатика</div></div>
-      <div class="teach-card rv"><div class="teach-av" style="background:#16a085;padding:0;overflow:hidden"><img src="/marin.jpg" alt="Марин Шаламанов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Марин Шаламанов</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Преподавател по информатика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#6abf3c;padding:0;overflow:hidden"><img src="/pics/teachers/vasil.png" alt="Васил Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Васил Василев</div><div class="teach-achiev">🏆 Участник в Intel ISEF</div><div class="teach-sub">Ръководител по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#534ab7;padding:0;overflow:hidden"><img src="/pics/teachers/ivanov.jpg" alt="Александър Иванов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Александър Иванов</div><div class="teach-achiev">🥇 Двукратен медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#2d7dd2;padding:0;overflow:hidden"><img src="/pics/teachers/yoan.jpg" alt="Йоан Василев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Йоан Василев</div><div class="teach-achiev">📐 Класиран на национален кръг на НОМ</div><div class="teach-sub">Ръководител по математика 3.–4. клас</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#1d9e75;padding:0;overflow:hidden"><img src="/pics/teachers/angel.jpg" alt="Ангел Райчев" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Ангел Райчев</div><div class="teach-achiev">🥇 Медалист от БОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#c0392b;padding:0;overflow:hidden"><img src="/pics/teachers/martin.jpg" alt="Мартин Димитров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Мартин Димитров</div><div class="teach-achiev">🎓 Harvard University</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#8e44ad;padding:0;overflow:hidden"><img src="/pics/teachers/petko.jpg" alt="Петко Лазаров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петко Лазаров</div><div class="teach-achiev">🥇 Медалист от МОМ</div><div class="teach-sub">Преподавател по математика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#378add;padding:0;overflow:hidden"><img src="/pics/teachers/petar.png" alt="Петър Петров" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Петър Петров</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Ръководител по информатика</div></div>
+      <div class="teach-card rv"><div class="teach-av" style="background:#16a085;padding:0;overflow:hidden"><img src="/pics/teachers/marin.jpg" alt="Марин Шаламанов" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="teach-name">Марин Шаламанов</div><div class="teach-achiev">🏆 Носител на награда „Джон Атанасов"</div><div class="teach-sub">Преподавател по информатика</div></div>
     </div>
   </section>
 

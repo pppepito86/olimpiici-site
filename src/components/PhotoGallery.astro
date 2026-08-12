@@ -1,0 +1,46 @@
+---
+const defaultPhotos = [
+  { src: '/pics/students/lecture.jpg', alt: 'Преподавател обяснява задача на дъската' },
+  { src: '/pics/students/students-laptops.jpg', alt: 'Ученици решават задачи по информатика на лаптопи' },
+  { src: '/pics/students/ejoi-team.jpg', alt: 'Отборът на България на eJOI 2025 в Шумен' },
+  { src: '/pics/students/ioi-team.jpg', alt: 'Отборът на България на международната олимпиада по информатика с медали' },
+  { src: '/pics/students/medal-ceremony.jpg', alt: 'Церемония по награждаване на ученици' },
+  { src: '/pics/students/moldova-team.jpg', alt: 'Отборът по информатика на летището' },
+  { src: '/pics/students/classroom-wide.jpg', alt: 'Ученици по време на присъствен курс' },
+  { src: '/pics/students/award-two.jpg', alt: 'Двама ученици с медали и грамота от състезание' },
+  { src: '/pics/students/trophies.jpg', alt: 'Купи и грамоти, спечелени от ученици на Олимпийци' },
+  { src: '/pics/students/countryside.jpg', alt: 'Ученици на отборно пътуване' },
+  { src: '/pics/students/chisinau-lab.jpg', alt: 'Отборът на eJOI 2024 в компютърната зала в Кишинев' },
+  { src: '/pics/students/boi-lab.jpg', alt: 'Ученик решава задачи в състезателна зала' },
+  { src: '/pics/students/trophy-shelf-group.jpg', alt: 'Ученици разговарят до витрината с купи' },
+  { src: '/pics/students/airport-team.jpg', alt: 'Отборът по информатика на летището преди полет' },
+  { src: '/pics/students/musala-award.jpg', alt: 'Двама ученици с грамоти от MusalaSoft CodeIT' },
+  { src: '/pics/students/classroom-selfie.jpg', alt: 'Селфи с ученици в класната стая' },
+  { src: '/pics/students/classroom-group.jpg', alt: 'Ученици прегърнати в класната стая' },
+  { src: '/pics/students/pizza-night.jpg', alt: 'Ученици с пица по време на подготовка' },
+  { src: '/pics/students/airport-flag.jpg', alt: 'Отборът с българското знаме на летището' },
+  { src: '/pics/students/ioi-medals.jpg', alt: 'Отборът на България на IOI с медали' },
+];
+
+const {
+  eyebrow = 'Моменти от школата',
+  title = 'От класните стаи до международните олимпиади',
+  photos = defaultPhotos,
+} = Astro.props;
+---
+<section class="section section-gallery rv">
+  <div class="eyebrow">{eyebrow}</div>
+  <div class="sec-title">{title}</div>
+  <div class="photo-carousel">
+    {photos.map((p, i) => (
+      <img class={`pc-slide${i === 0 ? ' active' : ''}`} src={p.src} alt={p.alt}>
+    ))}
+    <button class="pc-nav pc-prev" type="button" aria-label="Предишна снимка">‹</button>
+    <button class="pc-nav pc-next" type="button" aria-label="Следваща снимка">›</button>
+    <div class="pc-dots">
+      {photos.map((_, i) => (
+        <button class={`pc-dot${i === 0 ? ' active' : ''}`} type="button" aria-label={`Снимка ${i + 1}`}></button>
+      ))}
+    </div>
+  </div>
+</section>

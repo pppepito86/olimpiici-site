@@ -1,5 +1,46 @@
 ---
+import fs from 'fs';
+import path from 'path';
 import Base from '../layouts/Base.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+
+const codeNames = {
+  ZMS: 'Зимно математическо състезание',
+  NOM: 'Национална олимпиада по математика',
+  PMS: 'Пролетни математически състезания',
+  EMT: 'Есенен математически турнир',
+  MBOM: 'МБОМ',
+  NOI: 'Национална олимпиада по информатика',
+  ETI: 'Есенен турнир по информатика',
+  ZSI: 'Зимно състезание по информатика',
+  PSI: 'Пролетно състезание по информатика',
+  LTI: 'Летен турнир по информатика',
+};
+
+const resultsDir = path.join(process.cwd(), 'public/pics/results');
+const resultsPhotos = fs.readdirSync(resultsDir)
+  .filter((f) => f.endsWith('.jpg'))
+  .sort()
+  .map((f) => {
+    const base = f.replace(/\.jpg$/, '');
+    let alt = base;
+    let m;
+    if ((m = base.match(/^\d+_([A-Z]+)_(\d{4})(?:_(.+))?$/))) {
+      const [, code, year, rest] = m;
+      const name = codeNames[code] || code;
+      let klas = '';
+      if (rest) {
+        const km = rest.match(/(\d+(?:_\d+)?)_klas/);
+        if (km) klas = `, ${km[1].replace('_', '.–')}. клас`;
+      }
+      alt = `${name} ${year}${klas}`;
+    } else if ((m = base.match(/^(\d{4})_([A-Z]+)_([A-Z]+)_page_1$/))) {
+      const [, year, code, group] = m;
+      const name = codeNames[code] || code;
+      alt = `${name} ${year}, група ${group}`;
+    }
+    return { src: `/pics/results/${f}`, alt: `Класиране — ${alt}` };
+  });
 ---
 <Base
   title="Резултати | Олимпийци"
@@ -14,6 +55,9 @@ import Base from '../layouts/Base.astro';
     <p style="font-size:16px;font-weight:600;color:var(--dark);line-height:1.75;max-width:720px;margin-top:16px;text-align:justify" class="rv">Зад всяко силно класиране стои дълъг процес — редовна работа, трудни задачи, грешки, обратна връзка и постепенно изграждане на увереност. В "Олимпийци" не вярваме в подготовка в последния момент. Вярваме в система.</p>
     <p style="font-size:16px;font-weight:600;color:var(--dark);line-height:1.75;max-width:720px;margin-top:16px;text-align:justify" class="rv">Наши ученици са се класирали на национални кръгове, печелили са призови места и медали на най-важните национални и най-уважаваните международни състезания, участвали са в национални отбори и са продължавали към елитни университети и международни професионални среди. Тези резултати са важни, но още по-важно е как се стига до тях — чрез мислене, постоянство и работа с преподаватели, които знаят как изглежда високото ниво.</p>
   </section>
+
+  <PhotoGallery eyebrow="Класирания" title="Реални протоколи от класирания" photos={resultsPhotos} />
+
   <section class="section">
     <div class="eyebrow rv">Успехи</div>
     <p class="sec-sub rv">Реални резултати от реални ученици. Всяка година добавяме нови.</p>
@@ -26,6 +70,7 @@ import Base from '../layouts/Base.astro';
       <div class="result-card rv"><div class="result-ico">🌍</div><div class="result-num">37</div><div class="result-lbl">Общо международни медала</div></div>
     </div>
   </section>
+
   <section class="section section-alt rv">
     <div class="eyebrow">Хронология</div>
     <div class="sec-title">Избрани постижения</div>

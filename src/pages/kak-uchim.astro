@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
 ---
 <Base
   title="Как учим | Олимпийци"
@@ -19,7 +20,7 @@ import Base from '../layouts/Base.astro';
 
   <!-- 4 БЛОКА -->
   <section class="section section-alt rv">
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+    <div class="kuchi-grid">
 
       <div style="background:#fff;border-radius:var(--rl);padding:32px;border:1.5px solid var(--border)" class="rv">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
@@ -69,6 +70,8 @@ import Base from '../layouts/Base.astro';
 
     </div>
   </section>
+
+  <PhotoGallery />
 
   <!-- ЦЕЛ + ЦИТАТ -->
   <section class="section" style="background:#0f2206">

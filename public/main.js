@@ -79,6 +79,56 @@ function revealElements() {
 window.addEventListener('scroll', revealElements);
 revealElements();
 
+var _carouselTimers = [];
+
+function initPhotoCarousels() {
+  document.querySelectorAll('.photo-carousel').forEach(function (wrap) {
+    if (wrap.dataset.carouselInit) return;
+    wrap.dataset.carouselInit = '1';
+
+    var slides = wrap.querySelectorAll('.pc-slide');
+    var dots = wrap.querySelectorAll('.pc-dot');
+    var prevBtn = wrap.querySelector('.pc-prev');
+    var nextBtn = wrap.querySelector('.pc-next');
+    if (slides.length < 2) return;
+    var idx = 0;
+    var timer;
+
+    function goTo(newIdx) {
+      slides[idx].classList.remove('active');
+      dots[idx].classList.remove('active');
+      idx = (newIdx + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+    }
+
+    function startAuto() {
+      timer = setInterval(function () { goTo(idx + 1); }, 6000);
+      _carouselTimers.push(timer);
+    }
+
+    function restartAuto() {
+      clearInterval(timer);
+      startAuto();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(idx - 1); restartAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(idx + 1); restartAuto(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); restartAuto(); });
+    });
+
+    startAuto();
+  });
+}
+
+initPhotoCarousels();
+document.addEventListener('astro:page-load', initPhotoCarousels);
+document.addEventListener('astro:before-swap', function () {
+  _carouselTimers.forEach(function (t) { clearInterval(t); });
+  _carouselTimers = [];
+});
+
 function showDay(idx, tab) {
   document.querySelectorAll('.stab').forEach(function(t){ t.classList.remove('active'); });
   tab.classList.add('active');
