@@ -138,6 +138,40 @@ function showDay(idx, tab) {
   });
 }
 
+// ── EmailJS (нотификация до pppepito86@gmail.com при записване) ──
+// Виж https://www.emailjs.com — Account → General за Public Key,
+// Email Services за Service ID, Email Templates за Template ID.
+var EMAILJS_PUBLIC_KEY  = 'mfWKIniPKnv_VoTvC';
+var EMAILJS_SERVICE_ID  = 'service_xh441xd';
+var EMAILJS_TEMPLATE_ID = 'template_2ltz2uo';
+var EMAILJS_NOTIFY_TO   = 'pppepito86@gmail.com';
+
+if (window.emailjs && EMAILJS_PUBLIC_KEY !== 'ТВОЯ_PUBLIC_KEY') {
+  try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch (e) { console.error('EmailJS init error:', e); }
+}
+
+// Fire-and-forget — грешка тук никога не бива да чупи изпращането на заявката.
+function sendEmailNotification(payload, formLabel) {
+  if (!window.emailjs || EMAILJS_PUBLIC_KEY === 'ТВОЯ_PUBLIC_KEY') return;
+  try {
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email:     EMAILJS_NOTIFY_TO,
+      reply_to:     payload.email || EMAILJS_NOTIFY_TO,
+      form_label:   formLabel,
+      student:      payload.student || '',
+      school:       payload.school_name || payload.school || '',
+      parent:       payload.parent || '',
+      phone:        payload.phone || '',
+      email:        payload.email || '',
+      variant:      payload.variant || '',
+      forma:        payload.forma || '',
+      comment:      payload.comment || ''
+    }).catch(function(err) { console.error('EmailJS send error:', err); });
+  } catch (err) {
+    console.error('EmailJS error:', err);
+  }
+}
+
 // ── Google Forms URLs ──────────────────────────────────────────
 var GF_FORMS = {
   // Годишен — обща форма (info, kg, lmat, lkg)
@@ -418,6 +452,10 @@ function submitToGoogleForms(prefix, btn) {
   var formNames = { info: 'Информатика - Годишен', math: 'Математика - Годишен', kg: 'Кандидатстване - Годишен', linfo: 'Информатика - Летен', lmat: 'Математика - Летен', lkg: 'Кандидатстване - Летен' };
   var formLabel = formNames[prefix] || prefix;
   fbTrack('InitiateCheckout', { content_name: formLabel, content_category: 'zapisvane' });
+
+  // Нотификация по имейл — независима от GAS заявката, за да не зависи
+  // от CORS/мрежови проблеми при четене на неговия отговор.
+  sendEmailNotification(payload, formLabel);
 
   // 1. Пращаме към Apps Script (реален fetch — знаем дали е ОК)
   fetch(GAS_URL, {
