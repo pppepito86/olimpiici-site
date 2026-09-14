@@ -163,7 +163,9 @@ function sendEmailNotification(payload, formLabel) {
       parent:       payload.parent || '',
       phone:        payload.phone || '',
       email:        payload.email || '',
-      variant:      payload.variant || '',
+      // За 'math' формата класът се пази в payload.school (pills-math-school),
+      // а не в payload.variant (там няма pills-math-grade елемент).
+      variant:      payload.variant || (payload.form_type === 'math' ? payload.school : '') || '',
       forma:        payload.forma || '',
       comment:      payload.comment || ''
     }).catch(function(err) { console.error('EmailJS send error:', err); });
